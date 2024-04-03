@@ -10,7 +10,7 @@ session_destroy();
 <head>
     <meta charset="UTF-8">
     <title>Le titre du projet</title>
-    <link rel="stylesheet" type="text/css" href="monStyle.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <h1>Se connecter</h1>
