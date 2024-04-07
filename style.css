@@ -1,0 +1,46 @@
+body {
+	font-family: "Gill Sans", sans-serif;
+}
+
+form {
+	height: 20em;
+	height: 500px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin: auto;
+	width: 75%;
+	border: solid black;
+	border-radius: 10px;
+}
+
+input {
+	margin: auto;
+}
+
+label {
+	margin: auto;
+	font-size: 2em;
+}
+
+input[type=text] {
+	font-size: 2em;
+	border: solid black;
+	border-radius: 10px;
+	height: 1em;
+	width: 50%;
+}
+
+input[type=text]:focus {
+	border-color: solid gold;
+}
+
+input[type=submit] {
+	width: 200px;
+	height: 30px;
+	transition: border-radius 0.2s ease-in-out;
+}
+
+input[type=submit]:hover {
+	border-radius: 10px;
+}
