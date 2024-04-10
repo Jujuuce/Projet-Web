@@ -1,3 +1,5 @@
+/* Accueil temporaire du site */ 
+
 <?php
    session_start();
 ?>
