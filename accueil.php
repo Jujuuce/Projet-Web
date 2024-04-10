@@ -1,9 +1,8 @@
-/* Accueil temporaire du site */ 
-
 <?php
    session_start();
 ?>
 
+<!-- Acceuil temporaire du site -->
 <!DOCTYPE html>
 <html>
 <head>
