@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = json_decode(file_get_contents("php://input"));
     $username = $data->username;
@@ -30,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (count($resultats) == 1) {
         $response['success'] = true;
         $response['message'] = 'Connexion reussie';
+        $_SESSION["login"] = $username;
     } else {
         $response["success"] = false;
         $response["message"] = "Connexion échouée";

@@ -22,7 +22,7 @@ function loginVerification() {
     .then(data => {
         if (data.success) {
             // Authentification réussie
-            console.log(data.message);
+            window.location.replace("/projet/accueil.php");
             // Rediriger ou effectuer d'autres actions pour les utilisateurs authentifiés
         } else {
             // Échec de l'authentification
