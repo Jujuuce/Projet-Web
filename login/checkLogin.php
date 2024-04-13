@@ -28,18 +28,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
 
     $response = array();
-    
+
     // Affichage des résultats
     if (count($resultats) == 1) {
         $response['success'] = true;
         $response['message'] = 'Connexion reussie';
         $_SESSION["login"] = $username;
-        $requete = $bdd->prepare('UPDATE Users SET Users.connected = 1 WHERE Users.login = :a');
+        $requete = $bdd->prepare('UPDATE Users SET Users.connected = Users.connected + 1 WHERE Users.login = :a');
         $requete->execute(array('a' => $username));
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
     } else {
         $response["success"] = false;
-        $response["message"] = "Connexion échouée";
+        $response["message"] = "Utilisateur ou mot de passe incorrect";
     }
     
     echo json_encode($response);

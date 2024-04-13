@@ -4,7 +4,7 @@ body {
 	font-family: "Gill Sans", sans-serif;
 }
 
-form {
+#loginForm, #signUpForm {
 	border: solid black;
 	border-radius: 20px;
 	padding: 2em;
@@ -13,7 +13,7 @@ form {
 	flex-direction: column;
 }
 
-input[type="text"] {
+input[type="text"], input[type="password"] {
 	margin-bottom: 2em;
 	padding: 10px;
 	border: 1px solid black;
@@ -23,7 +23,7 @@ input[type="text"] {
 	transition: border-color 0.3s ease-in-out;
 }
   
-input[type="text"]:focus {
+input[type="text"]:focus, input[type="password"]:focus {
 	border-color: #007bff;
 	box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
@@ -64,4 +64,9 @@ label.submit-label {
 
 h1.formTitle {
 	text-align: center;
+}
+
+#errorMessage {
+	margin: 1em;
+	color: red;
 }

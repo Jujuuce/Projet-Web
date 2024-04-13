@@ -1,9 +1,12 @@
 function loginVerification() {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
+    var messageBox = document.getElementById("errorMessage");
+    messageBox.innerHTML = "";
 
     // Check if username or password is empty
     if (username === '' || password === '') {
+        messageBox.innerHTML = "Veuillez remplir tous les champs.";
         console.error('Username and password are required.');
         return;
     }
@@ -21,13 +24,10 @@ function loginVerification() {
     })
     .then(data => {
         if (data.success) {
-            // Authentification réussie
             window.location.replace("/projet/accueil.php");
-            // Rediriger ou effectuer d'autres actions pour les utilisateurs authentifiés
         } else {
-            // Échec de l'authentification
             console.error(data.message);
-            // Afficher un message d'erreur à l'utilisateur
+            messageBox.innerHTML = data.message;
         }
     })
 }

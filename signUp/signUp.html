@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>JJ Town</title>
+    <title>JJ Town - Inscription</title>
     <link rel="stylesheet" type="text/css" href="../style.css">
     <script src="signUp.js"></script>
 </head>
@@ -11,12 +11,12 @@
     <form id="signUpForm">
         <label for="username">Pseudo :</label>
         <input type="text" id="username" name="username"/>
-        <span class="error-message">Veuillez saisir une adresse email valide</span>
         <label for="password">Mot de passe :</label>
-        <input type="text" id="password" name="password"/>
+        <input type="password" id="password" name="password"/>
         <label for="password2">Confirmer le mot de passe :</label>
-        <input type="text" id="password2" name="password2"/>
+        <input type="password" id="password2" name="password2"/>
         <input id="submitBouton" type="submit"/>
+        <div id="errorMessage"></div>
     </form>
     <a href="../login/login.html">Déjà inscrit ?</a>
 </body>

@@ -30,9 +30,7 @@ function signUp() {
     .then(data => {
         if (data.success) {
             window.location.replace("/projet/accueil.php");
-            // Rediriger ou effectuer d'autres actions pour les utilisateurs authentifiés
         } else {
-            // Échec de l'authentification
             console.error(data.message);
             // Afficher un message d'erreur à l'utilisateur
         }
