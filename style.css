@@ -1,46 +1,67 @@
 body {
+	margin: auto;
+	width: 75%;
 	font-family: "Gill Sans", sans-serif;
 }
 
 form {
-	height: 20em;
-	height: 500px;
+	border: solid black;
+	border-radius: 20px;
+	padding: 2em;
+	margin: auto;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
-	margin: auto;
-	width: 75%;
-	border: solid black;
-	border-radius: 10px;
 }
 
-input {
-	margin: auto;
+input[type="text"] {
+	margin-bottom: 2em;
+	padding: 10px;
+	border: 1px solid black;
+	border-radius: 5px;
+	font-size: 16px;
+	outline: none;
+	transition: border-color 0.3s ease-in-out;
 }
-
+  
+input[type="text"]:focus {
+	border-color: #007bff;
+	box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+  
+input[type="submit"] {
+	padding: 10px 20px;
+	border: 1px solid #007bff;
+	border-radius: 5px;
+	font-size: 16px;
+	background-color: #007bff;
+	color: #fff;
+	cursor: pointer;
+	outline: none;
+	transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+  
+input[type="submit"]:hover {
+	background-color: #0056b3;
+}
+  
+input[type="submit"]:focus {
+	box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+  
 label {
-	margin: auto;
-	font-size: 2em;
+	display: block;
+	font-size: 1em;
+}
+  
+label.input-label {
+	color: #333;
+}
+  
+label.submit-label {
+	color: #007bff;
+	font-weight: bold;
 }
 
-input[type=text] {
-	font-size: 2em;
-	border: solid black;
-	border-radius: 10px;
-	height: 1em;
-	width: 50%;
-}
-
-input[type=text]:focus {
-	border-color: solid gold;
-}
-
-input[type=submit] {
-	width: 200px;
-	height: 30px;
-	transition: border-radius 0.2s ease-in-out;
-}
-
-input[type=submit]:hover {
-	border-radius: 10px;
+h1.formTitle {
+	text-align: center;
 }
