@@ -34,6 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $response['success'] = true;
         $response['message'] = 'Connexion reussie';
         $_SESSION["login"] = $username;
+        $requete = $bdd->prepare('UPDATE Users SET Users.connected = 1 WHERE Users.login = :a');
+        $requete->execute(array('a' => $username));
+        $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
     } else {
         $response["success"] = false;
         $response["message"] = "Connexion échouée";
