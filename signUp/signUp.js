@@ -1,22 +1,18 @@
-function noCorespondingPassword() {
-    console.error("Les mots de passe ne correspondent pas");
-    // Afficher un message d'erreur à l'utilisateur
-    
-}
-
 function signUp() {
 
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
     var password2 = document.getElementById("password2").value;
+    var messageBox = document.getElementById("errorMessage");
+    messageBox.innerHTML = "";
 
     if (password !== password2) {
         console.error("Les mots de passe ne correspondent pas");
-        // Afficher un message d'erreur à l'utilisateur
+        messageBox.innerHTML = "Les mots de passe ne correspondent pas";
         return;
     }
 
-    fetch('checkLogin.php', {
+    fetch('signUp.php', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({username: username, password: password})
@@ -32,14 +28,11 @@ function signUp() {
             window.location.replace("/projet/accueil.php");
         } else {
             console.error(data.message);
-            // Afficher un message d'erreur à l'utilisateur
         }
     })
 }
 
-window.onload = function() {
-    document.getElementById("signUpForm").addEventListener("submit", function(event) {
-        event.preventDefault();
-        signUp();
-    });
-}
+document.getElementById("signUpForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    signUp();
+});

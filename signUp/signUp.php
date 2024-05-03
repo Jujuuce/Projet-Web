@@ -1,6 +1,10 @@
 <?php
 
 session_start();
+if (isset($_SESSION[""]) && $_SESSION[""]) {
+    header("Location: ../index.php");
+    exit();
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = json_decode(file_get_contents("php://input"));
@@ -28,20 +32,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $response = array();
     if (count($resultats) == 1) {
-        $response["success"] = false;
-        $response["message"] = "Utilisateur déjà existant";
-        echo json_encode($response);
-        exit();
+        $response['success'] = false;
+        $response['message'] = 'Utilisateur déjà existant';
+    } else {
+        $requete = $bdd->prepare('INSERT INTO Users (login, password, connected) VALUES (:a, :b, 0)');
+        $requete->execute(array('a' => $username, 'b' => $password));
+        $_SESSION["login"] = $username;
+        $response['success'] = true;
+        $response['message'] = 'Inscription réussie';
     }
 
-    // Requête pour insérer un nouvel utilisateur
-    $requete = $bdd->prepare('INSERT INTO Users VALUES (:a, :b)');
-    $requete->execute(array('a' => $username, 'b' => $password));
-    $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
-
-    $response = array();
-    $response['success'] = true;
-    $response['message'] = 'Inscription réussie';
-    $_SESSION["login"] = $username;
     echo json_encode($response);
 }
