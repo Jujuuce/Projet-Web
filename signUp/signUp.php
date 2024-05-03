@@ -37,9 +37,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $requete = $bdd->prepare('INSERT INTO Users (login, password, connected) VALUES (:a, :b, 0)');
         $requete->execute(array('a' => $username, 'b' => $password));
-        $_SESSION["login"] = $username;
         $response['success'] = true;
         $response['message'] = 'Inscription réussie';
+        $_SESSION["login"] = $username;
+        $requete = $bdd->prepare('UPDATE Users SET Users.connected = 1 WHERE Users.login = :a');
+        $requete->execute(array('a' => $username));
+        $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
     }
 
     echo json_encode($response);
