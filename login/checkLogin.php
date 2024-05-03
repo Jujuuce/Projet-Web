@@ -22,19 +22,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit(); // Arrêter l'exécution du script en cas d'erreur de connexion
     }
 
-    // Exemple de requête pour récupérer toutes les données d'une table
     $requete = $bdd->prepare('SELECT * FROM `Users` WHERE Users.login = :a AND Users.password = :b');
     $requete->execute(array('a' => $username, 'b' => $password));
     $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
 
     $response = array();
-
-    // Affichage des résultats
     if (count($resultats) == 1) {
         $response['success'] = true;
         $response['message'] = 'Connexion reussie';
         $_SESSION["login"] = $username;
-        $requete = $bdd->prepare('UPDATE Users SET Users.connected = Users.connected + 1 WHERE Users.login = :a');
+        $requete = $bdd->prepare('UPDATE Users SET Users.connected = 1 WHERE Users.login = :a');
         $requete->execute(array('a' => $username));
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
     } else {

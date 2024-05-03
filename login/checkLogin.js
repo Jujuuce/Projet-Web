@@ -32,9 +32,7 @@ function loginVerification() {
     })
 }
 
-window.onload = function() {
-    document.getElementById("loginForm").addEventListener("submit", function(event) {
-        event.preventDefault();
-        loginVerification();
-    });
-}
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    loginVerification();
+});
