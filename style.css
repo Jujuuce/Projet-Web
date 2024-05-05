@@ -70,3 +70,16 @@ h1.formTitle {
 	margin: 1em;
 	color: red;
 }
+
+#logOutForm {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+#logOutForm input[type="submit"] {
+	margin: 10px;
+}

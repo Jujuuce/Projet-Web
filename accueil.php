@@ -17,15 +17,33 @@
             exit(); // Arrêter l'exécution du script en cas d'erreur de connexion
         }
 
-        $requete = $bdd->prepare('UPDATE Users SET Users.connected = Users.connected - 1 WHERE Users.login = :a');
+        $requete = $bdd->prepare('UPDATE Users SET Users.connected = 0 WHERE Users.login = :a');
         $requete->execute(array('a' => $_SESSION['login']));
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
 
         unset($_SESSION['login']);
     }
+
+    if(isset($_POST['delete'])) {
+        $dsn = 'mysql:host=localhost;dbname=dataBase_projet';
+        $db_username = 'root';
+        $db_password = '';
+    
+        try {
+            $bdd = new PDO($dsn, $db_username, $db_password);
+            $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            exit(); // Arrêter l'exécution du script en cas d'erreur de connexion
+        }
+
+        $requete = $bdd->prepare('DELETE FROM Users WHERE Users.login = :a');
+        $requete->execute(array('a' => $_SESSION['login']));
+        $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
+        unset($_SESSION['login']);
+    }
 ?>
 
-<!-- Acceuil temporaire du site -->>
+<!-- Acceuil temporaire du site -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,10 +54,18 @@
      <link href="style.css" rel="stylesheet">
 </head>
 <body>
-    <?php if(isset($_SESSION['login'])): ?>
-        <form id="logOutForm" method="post">
-            <input type="submit" name="logout" value="Déconnexion">
-        </form>
-    <?php endif; ?>
+    <h1>Accueil</h1>
+    <div id="logOutForm">
+        <?php if(isset($_SESSION['login'])): ?>
+            <form method="post">
+                <input type="submit" name="logout" value="Déconnexion">
+            </form>
+        <?php endif; ?>
+        <?php if(isset($_SESSION['login'])): ?>
+            <form method="post">
+                <input type="submit" name="delete" value="Supprimer le compte">
+            </form>
+        <?php endif; ?>
+    </div>
 </body>
 </html>
