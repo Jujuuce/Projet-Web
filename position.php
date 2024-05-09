@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $db_username = 'root';
     $db_password = '';
     $response = array();
+    $username = $_SESSION["login"];
 
     try {
         $bdd = new PDO($dsn, $db_username, $db_password);
@@ -28,13 +29,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit(); // Arrêter l'exécution du script en cas d'erreur de connexion
     }
 
-    $username = $_SESSION["login"];
-    
     try {
         $requete = $bdd->prepare("UPDATE Users SET X = :a, Y = :b WHERE Users.login = :c");
         $requete->execute(array('a' => $x, 'b' => $y));
         $response['success'] = true;
-        $response['message'] = '';
+        $response['message'] = 'ok';
     } catch (PDOException $e) {
         $response['success'] = false;
         $response['message'] = 'Erreur : ' . $e->getMessage();
