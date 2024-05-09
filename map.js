@@ -71,16 +71,28 @@ function deplacement(key) {
 
     var temp = coord;
     if (key == "ArrowRight") {
+        if (coord % 54 == 53) {
+            return;
+        }
         temp = coord + 1;
     } else if (key == "ArrowLeft") {
+        if (coord % 54 == 0) {
+            return;
+        }
         temp = coord - 1;
     } else if (key == "ArrowDown") {
+        if (coord >= 54*29) {
+            return;
+        }
         temp = coord + 54;
     } else if (key == "ArrowUp") {
+        if (coord < 54) {
+            return;
+        }
         temp = coord - 54;
     }
 
-    var coordonnees = numberToCoordonnates(coord);
+    var coordonnees = numberToCoordonnates(temp);
     var x = coordonnees[0];
     var y = coordonnees[1];
 
