@@ -11,6 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = json_decode(file_get_contents("php://input"));
     $y = $data->y;
     $x = $data->x;
+    $orient = $data->orient;
 
     // Connexion à la base de données
     $dsn = 'mysql:host=localhost;dbname=dataBase_projet';
@@ -30,8 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     try {
-        $requete = $bdd->prepare("UPDATE Users SET X = :a, Y = :b WHERE Users.login = :c");
-        $requete->execute(array('a' => $x, 'b' => $y, 'c' => $username));
+        $requete = $bdd->prepare("UPDATE Users SET X = :a, Y = :b, orientation = :d WHERE Users.login = :c");
+        $requete->execute(array('a' => $x, 'b' => $y, 'c' => $username, 'd' => $orient));
         $response['success'] = true;
         $response['message'] = 'ok';
     } catch (PDOException $e) {
@@ -76,7 +77,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $user = $pos['login'];
             $x = $pos['X'];
             $y = $pos['Y'];
-            $positions[$i] = [$user, $x, $y];
+            $orient = $pos['orientation'];
+            $positions[$i] = [$user, $x, $y, $orient];
         }
         
         $response['users'] = $positions;

@@ -69,27 +69,32 @@ function deplacement(key) {
 
 function deplacement(key) {
 
+    var orient = 'n';
     var temp = coord;
     if (key == "ArrowRight") {
         if (coord % 54 == 53) {
             return;
         }
         temp = coord + 1;
+        orient = 'e';
     } else if (key == "ArrowLeft") {
         if (coord % 54 == 0) {
             return;
         }
         temp = coord - 1;
+        orient = 'w';
     } else if (key == "ArrowDown") {
         if (coord >= 54*29) {
             return;
         }
         temp = coord + 54;
+        orient = 's';
     } else if (key == "ArrowUp") {
         if (coord < 54) {
             return;
         }
         temp = coord - 54;
+        orient = 'n';
     }
 
     var coordonnees = numberToCoordonnates(temp);
@@ -99,7 +104,7 @@ function deplacement(key) {
     fetch("position.php", {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({x: x, y: y})
+        body: JSON.stringify({x: x, y: y, orient: orient})
     })
     .then(response => {
         if (!response.ok) {
@@ -111,7 +116,6 @@ function deplacement(key) {
         if (content["success"]) {
             emplacement[coord].innerHTML = "";
             coord = temp;
-            emplacement[coord].innerHTML = '<p id="avatar"> Player </p><img src="P1/droite.png" id="player"/>';
             console.log("Position updated. X: " + x + " Y: " + y);
         } else {
             console.log(content["message"]);
@@ -119,7 +123,24 @@ function deplacement(key) {
     })
 }
 
-function affichageJoueur() {
+createGrid(30, 54);
+
+function affichageJoueur(name, x, y, orient) {
+    var place = document.getElementsByClassName('grid-cell');
+    var nb = coordonnatesToNumber(x,y);
+    if (orient == 'n') {
+        place[nb].innerHTML = '<p id="avatar"> Player </p><img src="P1/dos.png" id="player"/>';
+    } else if (orient == 's') {
+        place[nb].innerHTML = '<p id="avatar"> Player </p><img src="P1/face.png" id="player"/>';
+    } else if (orient == 'w') {
+        place[nb].innerHTML = '<p id="avatar"> Player </p><img src="P1/gauche.png" id="player"/>';
+    } else {
+        place[nb].innerHTML = '<p id="avatar"> Player </p><img src="P1/droite.png" id="player"/>';
+    }
+    
+}
+
+function affichageJoueurs() {
     fetch("position.php", {
         method: 'GET',
         headers: {'Content-Type': 'application/json;charset=utf-8'}
@@ -132,7 +153,9 @@ function affichageJoueur() {
     })
     .then(content => {
         if (content["success"]) {
-            console.log(content["users"]);
+            for (let i = 0; i < content["users"].length; i++) {
+                affichageJoueur(content["users"][i][0],content["users"][i][1],content["users"][i][2],content["users"][i][3]);
+            }
         }
     })
 }
@@ -142,5 +165,5 @@ document.addEventListener('keydown', (event) => {
     deplacement(name);
 });
 
-createGrid(30, 54);
-setInterval(affichageJoueur, 1000);
+
+setInterval(affichageJoueurs, 100);
