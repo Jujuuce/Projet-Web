@@ -46,8 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    $data = json_decode(file_get_contents('php://input'));
-
     // Connexion à la base de données
     $dsn = 'mysql:host=localhost;dbname=dataBase_projet';
     $db_username = 'root';
@@ -68,6 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     try {
         $requete = $bdd->prepare('SELECT * FROM `Users` WHERE Users.connected = :a');
         $requete->execute(array('a' => 1));
+
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
 
         $positions = array();
