@@ -35,8 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $response['success'] = false;
         $response['message'] = 'Utilisateur déjà existant';
     } else {
-        $requete = $bdd->prepare('INSERT INTO Users (login, password, connected) VALUES (:a, :b, 0, 0, 0)');
-        $requete->execute(array('a' => $username, 'b' => $password));
+        $requete = $bdd->prepare('INSERT INTO Users (login, password, connected, X, Y, orientation) VALUES (:a, :b, 0, 0, 0, :c)');
+        $requete->execute(array('a' => $username, 'b' => $password, 'c' => 'n'));
         $response['success'] = true;
         $response['message'] = 'Inscription réussie';
         $_SESSION["login"] = $username;
