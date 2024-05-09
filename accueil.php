@@ -45,7 +45,7 @@
 
 
 <!DOCTYPE html>
-<html lang="fr" id="base">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,33 +53,35 @@
     <link rel="stylesheet" href="style.css">
     <script defer src="idCheck.js"></script>
 </head>
-<body id="baseBody">
-    <div id="grid-container"></div>
+<body>
+    <div id="map">
+        <div id="grid-container"></div>
 
-    <div id="chat">
+        <div id="chat">
 
-        <div id="logOutForm">
-            <?php if(isset($_SESSION['login'])): ?>
-                <form method="post">
-                    <input type="submit" name="logout" value="Déconnexion">
-                </form>
-            <?php endif; ?>
-            <?php if(isset($_SESSION['login'])): ?>
-                <form method="post">
-                    <input type="submit" name="delete" value="Supprimer le compte">
-                </form>
-            <?php endif; ?>
-        </div>
-
-        <div id="messageBox">
-            <div id="messageOutput">
+            <div id="logOutForm">
+                <?php if(isset($_SESSION['login'])): ?>
+                    <form method="post">
+                        <input type="submit" name="logout" value="Déconnexion">
+                    </form>
+                <?php endif; ?>
+                <?php if(isset($_SESSION['login'])): ?>
+                    <form method="post">
+                        <input type="submit" name="delete" value="Supprimer le compte">
+                    </form>
+                <?php endif; ?>
             </div>
-        </div>
-        <div id="messageInput">
-            <form>
-                <input name="message" id="message" type="text" />
-                <button type="submit">></button>
-            </form>
+
+            <div id="messageBox">
+                <div id="messageOutput">
+                </div>
+            </div>
+            <div id="messageInput">
+                <form>
+                    <input name="message" id="message" type="text" />
+                    <button type="submit">></button>
+                </form>
+            </div>
         </div>
     </div>
 </body>
