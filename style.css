@@ -121,7 +121,7 @@ h1.formTitle {
     position: relative;
 }
 
-#player {
+.player {
     position: absolute;
     bottom : 0;
     z-index: 1000;
@@ -129,7 +129,7 @@ h1.formTitle {
     height: auto;
 }
 
-#avatar {
+.avatar {
     position: absolute;
     z-index: 1001;
     background-color: white;
