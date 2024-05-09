@@ -45,6 +45,7 @@ function numberToCoordonnates(nb) {
     return res;
 }
 
+/*
 function deplacement(key) {
     if (key == "ArrowRight") {
         emplacement[coord].innerHTML = "";
@@ -64,7 +65,47 @@ function deplacement(key) {
         coord = coord - 54;
     }
 }
+*/
 
+function deplacement(key) {
+
+    var temp = coord;
+    if (key == "ArrowRight") {
+        temp = coord + 1;
+    } else if (key == "ArrowLeft") {
+        temp = coord - 1;
+    } else if (key == "ArrowDown") {
+        temp = coord + 54;
+    } else if (key == "ArrowUp") {
+        temp = coord - 54;
+    }
+
+    var coordonnees = numberToCoordonnates(coord);
+    var x = coordonnees[0];
+    var y = coordonnees[1];
+
+    fetch("position.php", {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({x: x, y: y})
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Erreur lors de la requête Fetch.");
+        }
+        return response.json();
+    })
+    .then(content => {
+        if (content["success"]) {
+            emplacement[coord].innerHTML = "";
+            coord = temp;
+            emplacement[coord].innerHTML = '<p id="avatar"> Player </p><img src="P1/droite.png" id="player"/>';
+            console.log("Position updated.");
+        } else {
+            console.log(content["message"]);
+        }
+    })
+}
 
 document.addEventListener('keydown', (event) => {
     var name = event.key;
