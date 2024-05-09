@@ -32,7 +32,7 @@ function createGrid(x,y) {
     }
 }
 
-var coord = 0;
+var coord = 463;
 var emplacement = document.getElementsByClassName('grid-cell');
 
 function coordonnatesToNumber(x,y){
@@ -129,13 +129,13 @@ function affichageJoueur(name, x, y, orient) {
     var place = document.getElementsByClassName('grid-cell');
     var nb = coordonnatesToNumber(x,y);
     if (orient == 'n') {
-        place[nb].innerHTML = '<p id="avatar"> Player </p><img src="P1/dos.png" id="player"/>';
+        place[nb].innerHTML = '<p class="avatar">' + name + '</p><img src="P1/dos.png" class="player"/>';
     } else if (orient == 's') {
-        place[nb].innerHTML = '<p id="avatar"> Player </p><img src="P1/face.png" id="player"/>';
+        place[nb].innerHTML = '<p class="avatar">' + name + '</p><img src="P1/face.png" class="player"/>';
     } else if (orient == 'w') {
-        place[nb].innerHTML = '<p id="avatar"> Player </p><img src="P1/gauche.png" id="player"/>';
+        place[nb].innerHTML = '<p class="avatar">' + name + '</p><img src="P1/gauche.png" class="player"/>';
     } else {
-        place[nb].innerHTML = '<p id="avatar"> Player </p><img src="P1/droite.png" id="player"/>';
+        place[nb].innerHTML = '<p class="avatar">' + name + '</p><img src="P1/droite.png" class="player"/>';
     }
     
 }
