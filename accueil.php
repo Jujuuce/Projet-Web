@@ -43,29 +43,44 @@
     }
 ?>
 
-<!-- Acceuil temporaire du site -->
+
 <!DOCTYPE html>
-<html>
+<html lang="fr" id="base">
 <head>
-     <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <title>Projet</title>
-     <script type="text/javascript" src="idCheck.js"></script>
-     <link href="style.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100x100 Grid</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="idCheck.js"></script>
 </head>
-<body>
-    <h1>Accueil</h1>
-    <div id="logOutForm">
-        <?php if(isset($_SESSION['login'])): ?>
-            <form method="post">
-                <input type="submit" name="logout" value="Déconnexion">
+<body id="baseBody">
+    <div id="grid-container"></div>
+
+    <div id="chat">
+
+        <div id="logOutForm">
+            <?php if(isset($_SESSION['login'])): ?>
+                <form method="post">
+                    <input type="submit" name="logout" value="Déconnexion">
+                </form>
+            <?php endif; ?>
+            <?php if(isset($_SESSION['login'])): ?>
+                <form method="post">
+                    <input type="submit" name="delete" value="Supprimer le compte">
+                </form>
+            <?php endif; ?>
+        </div>
+
+        <div id="messageBox">
+            <div id="messageOutput">
+            </div>
+        </div>
+        <div id="messageInput">
+            <form>
+                <input name="message" id="message" type="text" />
+                <button type="submit">></button>
             </form>
-        <?php endif; ?>
-        <?php if(isset($_SESSION['login'])): ?>
-            <form method="post">
-                <input type="submit" name="delete" value="Supprimer le compte">
-            </form>
-        <?php endif; ?>
+        </div>
     </div>
 </body>
 </html>
