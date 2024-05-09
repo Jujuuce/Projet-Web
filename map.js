@@ -32,7 +32,7 @@ function createGrid(x,y) {
     }
 }
 
-var coord = 463;
+var coord = 517;
 var emplacement = document.getElementsByClassName('grid-cell');
 
 function coordonnatesToNumber(x,y){
