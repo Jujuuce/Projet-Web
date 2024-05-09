@@ -17,8 +17,8 @@
             exit(); // Arrêter l'exécution du script en cas d'erreur de connexion
         }
 
-        $requete = $bdd->prepare('UPDATE Users SET Users.connected = 0, Users.X = 31, Users.Y = 8, Users.orientation = "s" WHERE Users.login = :a');
-        $requete->execute(array('a' => $_SESSION['login']));
+        $requete = $bdd->prepare('UPDATE Users SET Users.connected = 0, Users.X = 34, Users.Y = 8, Users.orientation = :b WHERE Users.login = :a');
+        $requete->execute(array('a' => $_SESSION['login'], 'b' => 's'));
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
 
         unset($_SESSION['login']);
