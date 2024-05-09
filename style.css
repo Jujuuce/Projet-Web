@@ -1,4 +1,14 @@
+html {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
 body {
+	display:flex;
+    margin: 0;
+    width: 100%;
+    height: 100%;
 	margin: auto;
 	font-family: "Gill Sans", sans-serif;
 }
@@ -85,4 +95,78 @@ h1.formTitle {
 
 #logOutForm input[type="submit"] {
 	margin: 10px;
+}
+
+
+
+#grid-container {
+    height: 100%;
+    width: 80%;
+    background-image: url("pokemon.png");
+    background-position: center center;
+    background-size: 100% 100%;
+    display: grid;
+    grid-template-columns: repeat(54, auto);
+}
+
+.grid-cell {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+#player {
+    position: absolute;
+    bottom : 0;
+    z-index: 1000;
+    width: 120%;
+    height: auto;
+}
+
+#avatar {
+    position: absolute;
+    z-index: 1001;
+    background-color: white;
+    color:black;
+    bottom:100%;
+    width: auto;
+    height: auto;
+}
+
+#chat {
+    height: 100%;
+    width: 20%;
+    background-color: black;
+}
+
+
+#decoButton {
+    height:5%;
+    background-color: blue;
+}
+
+#messageBox {
+    height:80%;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+#messageInput {
+    height:15%;
+    background-color: red;
+}
+
+#message {
+    margin:2%;
+    width:80%;
+    height:60%;
+}
+
+#messageOutput {
+    height: 90%;
+    width: 90%;
+    background-color: white;
 }
