@@ -51,7 +51,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>100x100 Grid</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="idCheck.js"></script>
+    <script defer src="map.js"></script>
 </head>
 <body>
     <div id="map">
