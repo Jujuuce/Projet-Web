@@ -1,14 +1,17 @@
 body {
 	margin: auto;
-	width: 75%;
 	font-family: "Gill Sans", sans-serif;
+}
+
+#container {
+	margin: auto;
+	width: 75%;
 }
 
 #loginForm, #signUpForm {
 	border: solid black;
 	border-radius: 20px;
 	padding: 2em;
-	margin: auto;
 	display: flex;
 	flex-direction: column;
 }
