@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         $requete = $bdd->prepare("UPDATE Users SET X = :a, Y = :b WHERE Users.login = :c");
-        $requete->execute(array('a' => $x, 'b' => $y));
+        $requete->execute(array('a' => $x, 'b' => $y, 'c' => $username));
         $response['success'] = true;
         $response['message'] = 'ok';
     } catch (PDOException $e) {
@@ -83,6 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $response['users'] = $positions;
         $response['success'] = true;
         $response['message'] = 'ok';
+
     } catch (PDOException $e) {
         $response['users'] = false;
         $response['success'] = false;
