@@ -119,9 +119,28 @@ function deplacement(key) {
     })
 }
 
+function affichageJoueur() {
+    fetch("position.php", {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json;charset=utf-8'}
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Erreur lors de la requête Fetch.");
+        }
+        return response.json();
+    })
+    .then(content => {
+        if (content["success"]) {
+            console.log(content["users"]);
+        }
+    })
+}
+
 document.addEventListener('keydown', (event) => {
     var name = event.key;
     deplacement(name);
 });
 
 createGrid(30, 54);
+setInterval(affichageJoueur, 1000);
