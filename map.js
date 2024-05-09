@@ -36,7 +36,7 @@ var coord = 0;
 var emplacement = document.getElementsByClassName('grid-cell');
 
 function coordonnatesToNumber(x,y){
-    return (29 - y) * 54 + x
+    return y * 54 + x
 }
 
 function numberToCoordonnates(nb) {
@@ -100,7 +100,7 @@ function deplacement(key) {
             emplacement[coord].innerHTML = "";
             coord = temp;
             emplacement[coord].innerHTML = '<p id="avatar"> Player </p><img src="P1/droite.png" id="player"/>';
-            console.log("Position updated.");
+            console.log("Position updated. X: " + x + " Y: " + y);
         } else {
             console.log(content["message"]);
         }
