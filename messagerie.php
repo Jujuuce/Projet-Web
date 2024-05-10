@@ -45,7 +45,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $db_username = 'root';
     $db_password = '';
     $response = array();
-    $moment = $_SESSION["moment"];
 
     try {
         $bdd = new PDO($dsn, $db_username, $db_password);
