@@ -26,7 +26,7 @@
             <input id="submitBouton" type="submit"/>
             <div id="errorMessage"></div>
         </form>
-        <a href="../login/login.html">Déjà inscrit ?</a>
+        <a href="../login/login.php">Déjà inscrit ?</a>
     </div>
 </body>
 </html>
