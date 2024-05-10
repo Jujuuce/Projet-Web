@@ -156,7 +156,7 @@ function affichageJoueurs() {
         if (content["success"]) {
             for (let i = 0; i < content["users"].length; i++) {
                 affichageJoueur(content["users"][i][0],content["users"][i][1],content["users"][i][2],content["users"][i][3]);
-                if (start && $_SESSION["login"] == content["users"][i][0]) {
+                if (start && content["users"][i][4] == 1) {
                     coord = coordonnatesToNumber(content["users"][i][1],content["users"][i][2])
                     start = false;
                 }
