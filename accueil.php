@@ -77,7 +77,7 @@
                 </div>
             </div>
             <div id="messageInput">
-                <form>
+                <form id="messagerie">
                     <input name="message" id="message" type="text" />
                     <button type="submit">></button>
                 </form>
