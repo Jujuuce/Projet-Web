@@ -25,7 +25,7 @@
             <input id="submitBouton" type="submit"/>
             <div id="errorMessage"></div>
         </form>
-        <a href="../signUp/signUpPage.html">Pas encore inscrit ?</a>
+        <a href="../signUp/signUpPage.php">Pas encore inscrit ?</a>
     </div>
 </body>
 </html>
