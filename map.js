@@ -70,7 +70,7 @@ function deplacement(key) {
 
 function deplacement(key) {
 
-    var orient = 'n';
+    var orient = 's';
     var temp = coord;
     if (key == "ArrowRight") {
         if (coord % 54 == 53) {
