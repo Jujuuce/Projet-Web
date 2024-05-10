@@ -34,7 +34,8 @@ function createGrid(x,y) {
 
 var coord = 0;
 var start = true;
-var emplacement = document.getElementsByClassName('grid-cell');
+var place = document.getElementsByClassName('grid-cell');
+var positionUsers = {};
 
 function coordonnatesToNumber(x,y){
     return y * 54 + x
@@ -45,28 +46,6 @@ function numberToCoordonnates(nb) {
     var res = [reste, (nb-reste)/54]
     return res;
 }
-
-/*
-function deplacement(key) {
-    if (key == "ArrowRight") {
-        emplacement[coord].innerHTML = "";
-        emplacement[coord + 1].innerHTML = '<p id="avatar"> Player </p><img src="P1/droite.png" id="player"/>';
-        coord = coord + 1;
-    } else if (key == "ArrowLeft") {
-        emplacement[coord].innerHTML = "";
-        emplacement[coord - 1].innerHTML = '<p id="avatar"> Player </p><img src="P1/gauche.png" id="player"/>';
-        coord = coord - 1;
-    } else if (key == "ArrowDown") {
-        emplacement[coord].innerHTML = "";
-        emplacement[coord + 54].innerHTML = '<p id="avatar"> Player </p><img src="P1/face.png" id="player"/>';
-        coord = coord + 54;
-    } else if (key == "ArrowUp") {
-        emplacement[coord].innerHTML = "";
-        emplacement[coord - 54].innerHTML = '<p id="avatar"> Player </p><img src="P1/dos.png" id="player"/>';
-        coord = coord - 54;
-    }
-}
-*/
 
 function deplacement(key) {
 
@@ -115,7 +94,7 @@ function deplacement(key) {
     })
     .then(content => {
         if (content["success"]) {
-            emplacement[coord].innerHTML = "";
+            place[coord].innerHTML = "";
             coord = temp;
             console.log("Position updated. X: " + x + " Y: " + y);
         } else {
@@ -154,10 +133,15 @@ function affichageJoueurs() {
     })
     .then(content => {
         if (content["success"]) {
+            for (var key in positionUsers) {
+                place[positionUsers[key]].innerHTML = "";
+            }
+            positionUsers = {};
             for (let i = 0; i < content["users"].length; i++) {
+                positionUsers[content["users"][i][0]] = coordonnatesToNumber(content["users"][i][1],content["users"][i][2]);
                 affichageJoueur(content["users"][i][0],content["users"][i][1],content["users"][i][2],content["users"][i][3]);
                 if (start && content["users"][i][4] == 1) {
-                    coord = coordonnatesToNumber(content["users"][i][1],content["users"][i][2]);
+                    coord = coordonnatesToNumber(content["users"][i][1],content["users"][i][2])
                     start = false;
                 }
             }
