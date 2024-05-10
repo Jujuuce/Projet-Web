@@ -2,7 +2,7 @@
 
 session_start();
 if (isset($_SESSION[""]) && $_SESSION[""]) {
-    header("Location: ../index.php");
+    header("Location: ../accueil.php");
     exit();
 }
 
@@ -89,6 +89,30 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $response['success'] = true;
         $response['message'] = 'ok';
 
+    } catch (PDOException $e) {
+        $response['users'] = false;
+        $response['success'] = false;
+        $response['message'] = 'Erreur : ' . $e->getMessage();
+        echo json_encode($response);
+        exit(); // Arrêter l'exécution du script en cas d'erreur de connexion
+    }
+
+    try {
+        $bdd = new PDO($dsn, $db_username, $db_password);
+        $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        $response['users'] = false;
+        $response['success'] = false;
+        $response['message'] = 'Erreur : ' . $e->getMessage();
+        echo json_encode($response);
+        exit(); // Arrêter l'exécution du script en cas d'erreur de connexion
+    }
+
+    try {
+        $requete = $bdd->prepare('UPDATE Users SET Users.connected = 1, Users.lastConnection = :a WHERE Users.login = :b');
+        $requete->execute(array('a' => time(), 'b' => $_SESSION['login']));
+        $requete = $bdd->prepare('UPDATE Users SET Users.connected = 0 WHERE Users.lastConnection < :a');
+        $requete->execute(array('a' => time() - 1));
     } catch (PDOException $e) {
         $response['users'] = false;
         $response['success'] = false;
