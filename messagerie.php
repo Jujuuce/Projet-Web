@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
         if (isset($_SESSION["moment"])) {
             $requete = $bdd->prepare('SELECT * FROM `messages` WHERE messages.id >= :a');
-            $requete->execute(array('a' => $moment));
+            $requete->execute(array('a' => $_SESSION["moment"]));
             $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
         } else {
             $requete = $bdd->prepare('SELECT * FROM messages ORDER BY messages.id DESC LIMIT :a');
