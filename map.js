@@ -167,7 +167,7 @@ function affichageJoueurs() {
 
 document.addEventListener('keydown', (event) => {
     var name = event.key;
-    if (start == false) {
+    if (start == false && (name == "ArrowRight" || name == "ArrowLeft" || name == "ArrowDown" || name == "ArrowUp")) {
         deplacement(name);
     }
 });
