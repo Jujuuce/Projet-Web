@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     try {
 
-        if (isset($_SESSION["moment"]) && $_SESSION["moment"]) {
+        if (isset($_SESSION["moment"])) {
             $requete = $bdd->prepare('SELECT * FROM `messages` WHERE messages.id >= :a');
             $requete->execute(array('a' => $moment));
             $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
