@@ -165,12 +165,10 @@ function affichageMessages() {
         return response.json();
     })
     .then(content => {
-        console.log(content);
         if (content["success"]) {
-            
             var text = '';
             for (let i = 0; i < content["allMessages"].length; i++) {
-                text = text + content["allMessages"][$i];
+                text = text + content["allMessages"][i];
             }
             afficherText(text);
         }
