@@ -165,7 +165,9 @@ function affichageMessages() {
         return response.json();
     })
     .then(content => {
+        console.log(content);
         if (content["success"]) {
+            
             var text = '';
             for (let i = 0; i < content["allMessages"].length; i++) {
                 text = text + content["allMessages"][$i];
@@ -178,7 +180,7 @@ function affichageMessages() {
 function message() {
 
     var message = document.getElementById("message").value;
-
+    document.getElementById("message").value = "";
     fetch('messagerie.php', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -192,7 +194,7 @@ function message() {
     })
     .then(data => {
         if (data.success) {
-            console.log("ok")
+            console.log("Message envoyé");
         } else {
             console.error(data.message);
         }
@@ -204,7 +206,6 @@ document.getElementById("messagerie").addEventListener("submit", function(event)
     event.preventDefault();
     message();
 });
-
 
 
 document.addEventListener('keydown', (event) => {
