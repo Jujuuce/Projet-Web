@@ -32,7 +32,8 @@ function createGrid(x,y) {
     }
 }
 
-var coord = 466;
+var coord = 0;
+var start = true;
 var emplacement = document.getElementsByClassName('grid-cell');
 
 function coordonnatesToNumber(x,y){
@@ -155,6 +156,10 @@ function affichageJoueurs() {
         if (content["success"]) {
             for (let i = 0; i < content["users"].length; i++) {
                 affichageJoueur(content["users"][i][0],content["users"][i][1],content["users"][i][2],content["users"][i][3]);
+                if (start && $_SESSION["login"] == content["users"][i][0]) {
+                    coord = coordonnatesToNumber(content["users"][i][1],content["users"][i][2])
+                    start = false;
+                }
             }
         }
     })
@@ -162,8 +167,10 @@ function affichageJoueurs() {
 
 document.addEventListener('keydown', (event) => {
     var name = event.key;
-    deplacement(name);
+    if (start == false) {
+        deplacement(name);
+    }
 });
 
 
-setInterval(affichageJoueurs, 100);
+setInterval(affichageJoueurs, 50);
