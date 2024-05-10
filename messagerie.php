@@ -70,7 +70,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $resultats = array_reverse($result);
         }
 
-        
         $id = 0;
         $allMessages = array();
 
