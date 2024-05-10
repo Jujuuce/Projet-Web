@@ -11,7 +11,7 @@ function checkID() {
     })
     .then(content => {
         if (content["session"] == 0) {
-            window.location.replace("/projet/login/login.html");
+            window.location.replace("/projet/login/login.php");
         }
     })
     .catch(error => {
