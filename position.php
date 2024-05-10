@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $x = $pos['X'];
             $y = $pos['Y'];
             $orient = $pos['orientation'];
-            if ($user != $_SESSION['login']) {
+            if ($user == $_SESSION['login']) {
                 $positions[$i] = [$user, $x, $y, $orient, 1];
             } else {
                 $positions[$i] = [$user, $x, $y, $orient, 0];
