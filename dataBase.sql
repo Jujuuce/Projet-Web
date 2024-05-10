@@ -7,3 +7,10 @@ CREATE TABLE `Users` (
   orientation varchar(255) NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+CREATE TABLE `messages` (
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `user` varchar(255) NOT NULL,
+  `heure` varchar(255) NOT NULL,
+  `mess` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
