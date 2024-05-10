@@ -1,11 +1,5 @@
 <?php
 
-session_start();
-if (isset($_SESSION[""]) && $_SESSION[""]) {
-    header("Location: ../index.php");
-    exit();
-}
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = json_decode(file_get_contents("php://input"));
     $message = $data->message;
@@ -65,11 +59,20 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     }
 
     try {
-        $requete = $bdd->prepare('SELECT * FROM `messages` WHERE messages.id >= :a');
-        $requete->execute(array('a' => $moment));
 
-        $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
+        if (isset($_SESSION["moment"]) && $_SESSION["moment"]) {
+            $requete = $bdd->prepare('SELECT * FROM `messages` WHERE messages.id >= :a');
+            $requete->execute(array('a' => $moment));
+            $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            $requete = $bdd->prepare('SELECT * FROM messages ORDER BY messages.id DESC LIMIT :a');
+            $requete->execute(array('a' => 10));
+            $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+            $resultats = array_reverse($result);
+        }
 
+        
+        $id = 0;
         $allMessages = array();
 
         for ($i = 0; $i < count($resultats); $i++) {
@@ -77,9 +80,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $user = $temp['user'];
             $heure = $temp['heure'];
             $mess = $temp['mess'];
+            $id = $temp['id'];
             $allMessages[$i] = $user . ' at ' . $heure . ' : ' . $mess . '\n';
         }
         
+        $_SESSION["moment"] = $id;
         $response['allMessages'] = $allMessages;
         $response['success'] = true;
         $response['message'] = 'ok';
