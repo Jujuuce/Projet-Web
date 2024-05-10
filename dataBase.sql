@@ -5,6 +5,7 @@ CREATE TABLE `Users` (
   X int(11) NOT NULL DEFAULT 0,
   Y int(11) NOT NULL DEFAULT 0,
   orientation varchar(255) NOT NULL,
+  lastConnection int(11) NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `messages` (
