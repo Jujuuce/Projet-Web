@@ -61,8 +61,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     try {
 
         if (isset($_SESSION["moment"])) {
+            $moment = $_SESSION["moment"];
             $requete = $bdd->prepare('SELECT * FROM `messages` WHERE messages.id > :a');
-            $requete->execute(array('a' => $_SESSION["moment"]));
+            $requete->execute(array('a' => $moment));
             $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
         } else {
             $requete = $bdd->prepare('SELECT * FROM messages ORDER BY messages.id DESC LIMIT 10');
@@ -79,11 +80,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $user = $temp['user'];
             $heure = $temp['heure'];
             $mess = $temp['mess'];
-            $id = $temp['id'];
-            $allMessages[$i] = $user . ' at ' . $heure . ' : ' . $mess . '\n';
+            $_SESSION["moment"] = $temp['id'];
+            $allMessages[$i] = $user . ' at ' . $heure . ' : ' . $mess . '<br />';
         }
         
-        $_SESSION["moment"] = $id;
+
         $response['allMessages'] = $allMessages;
         $response['success'] = true;
         $response['message'] = 'ok';
