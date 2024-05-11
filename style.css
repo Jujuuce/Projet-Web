@@ -47,10 +47,11 @@ input[type="text"]:focus, input[type="password"]:focus {
 }
   
 input[type="submit"] {
-	padding: 10px 20px;
 	border: 1px solid #007bff;
+    margin:0;
+    padding:10px;
 	border-radius: 5px;
-	font-size: 16px;
+	font-size: auto;
 	background-color: #007bff;
 	color: #fff;
 	cursor: pointer;
@@ -89,17 +90,69 @@ h1.formTitle {
 	color: red;
 }
 
+#chat {
+    height: 100%;
+    width: 20%;
+    background-color: black;
+}
+
+
+#messageBox {
+    height:75%;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+#messageInput {
+    height:15%;
+    background-color: red;
+    display:flex;
+    justify-content: center;
+}
+
+#message {
+    margin:2%;
+    width:80%;
+    height:60%;
+}
+
+#messageOutput {
+    height: 90%;
+    width: 90%;
+    background-color: white;
+    border-radius: 5px;
+    word-wrap: break-word;
+    overflow: auto;
+    line-height:normal;
+}
+
+#messagerie {
+    display:flex;
+    height:80%;
+    width:90%;
+    align-items: center;
+    justify-content: space-around;
+}
+
 #logOutForm {
-	position: absolute;
-	top: 0;
-	right: 0;
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-end;
+	height:10%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border:5%;
 }
 
 #logOutForm input[type="submit"] {
-	margin: 10px;
+	margin: 0;
+    width:100%;
+    padding:10px;
+}
+
+.formButton {
+    width: 40%;
 }
 
 
@@ -107,11 +160,11 @@ h1.formTitle {
 #grid-container {
     height: 100%;
     width: 80%;
-    background-image: url("pokemon.png");
+    background-image: url("pokemon3.png");
     background-position: center center;
     background-size: 100% 100%;
     display: grid;
-    grid-template-columns: repeat(54, auto);
+    grid-template-columns: repeat(120, auto);
 }
 
 .grid-cell {
@@ -125,7 +178,7 @@ h1.formTitle {
     position: absolute;
     bottom : 0;
     z-index: 1000;
-    width: 120%;
+    width: 130%;
     height: auto;
 }
 
@@ -137,13 +190,9 @@ h1.formTitle {
     bottom:100%;
     width: auto;
     height: auto;
+    font-size: 15px;
 }
 
-#chat {
-    height: 100%;
-    width: 20%;
-    background-color: black;
-}
 
 
 #decoButton {
@@ -151,27 +200,8 @@ h1.formTitle {
     background-color: blue;
 }
 
-#messageBox {
-    height:80%;
-    display : flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-}
 
-#messageInput {
-    height:15%;
-    background-color: red;
-}
-
-#message {
-    margin:2%;
-    width:80%;
-    height:60%;
-}
-
-#messageOutput {
-    height: 90%;
-    width: 90%;
-    background-color: white;
+textarea {
+    resize : none;
+    border-radius: 5px;
 }

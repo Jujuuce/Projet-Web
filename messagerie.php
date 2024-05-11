@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = json_decode(file_get_contents("php://input"));
     $message = $data->message;
     $timestamp = time();
-    $time = date("d F Y h:i:s", $timestamp);
+    $time = date("h:i", $timestamp);
 
     // Connexion à la base de données
     $dsn = 'mysql:host=localhost;dbname=dataBase_projet';
@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $heure = $temp['heure'];
             $mess = $temp['mess'];
             $_SESSION["moment"] = $temp['id'];
-            $allMessages[$i] = $user . ' at ' . $heure . ' : ' . $mess . '<br />';
+            $allMessages[$i] = '[' . $heure . ']' . $user . ' : ' . $mess . '<br />';
         }
         
 

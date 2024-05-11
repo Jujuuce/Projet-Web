@@ -22,7 +22,6 @@
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
 
         unset($_SESSION['login']);
-        unset($_SESSION['moment']);
     }
 
     if(isset($_POST['delete'])) {
@@ -41,7 +40,6 @@
         $requete->execute(array('a' => $_SESSION['login']));
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
         unset($_SESSION['login']);
-        unset($_SESSION['moment']);
     }
 ?>
 
@@ -63,13 +61,13 @@
 
             <div id="logOutForm">
                 <?php if(isset($_SESSION['login'])): ?>
-                    <form method="post">
+                    <form method="post" class="formButton">
                         <input type="submit" name="logout" value="Déconnexion">
                     </form>
                 <?php endif; ?>
                 <?php if(isset($_SESSION['login'])): ?>
-                    <form method="post">
-                        <input type="submit" name="delete" value="Supprimer le compte">
+                    <form method="post" class="formButton">
+                        <input type="submit" name="delete" value="Réglages">
                     </form>
                 <?php endif; ?>
             </div>
@@ -80,7 +78,7 @@
             </div>
             <div id="messageInput">
                 <form id="messagerie">
-                    <input name="message" id="message" type="text" />
+                    <textarea name="message" cols="25" rows="5" id="message" type="text"></textarea>
                     <button type="submit">></button>
                 </form>
             </div>

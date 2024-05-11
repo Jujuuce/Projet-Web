@@ -38,12 +38,12 @@ var place = document.getElementsByClassName('grid-cell');
 var positionUsers = {};
 
 function coordonnatesToNumber(x,y){
-    return y * 54 + x
+    return y * 120 + x
 }
 
 function numberToCoordonnates(nb) {
-    var reste = nb % 54
-    var res = [reste, (nb-reste)/54]
+    var reste = nb % 120
+    var res = [reste, (nb-reste)/120]
     return res;
 }
 
@@ -52,28 +52,28 @@ function deplacement(key) {
     var orient = 's';
     var temp = coord;
     if (key == "ArrowRight") {
-        if (coord % 54 == 53) {
+        if (coord % 120 == 119) {
             return;
         }
         temp = coord + 1;
         orient = 'e';
     } else if (key == "ArrowLeft") {
-        if (coord % 54 == 0) {
+        if (coord % 120 == 0) {
             return;
         }
         temp = coord - 1;
         orient = 'w';
     } else if (key == "ArrowDown") {
-        if (coord >= 54*29) {
+        if (coord >= 120*80) {
             return;
         }
-        temp = coord + 54;
+        temp = coord + 120;
         orient = 's';
     } else if (key == "ArrowUp") {
-        if (coord < 54) {
+        if (coord < 120) {
             return;
         }
-        temp = coord - 54;
+        temp = coord - 120;
         orient = 'n';
     }
 
@@ -103,7 +103,7 @@ function deplacement(key) {
     })
 }
 
-createGrid(30, 54);
+createGrid(80, 120);
 
 function affichageJoueur(name, x, y, orient) {
     var place = document.getElementsByClassName('grid-cell');
@@ -150,7 +150,9 @@ function affichageJoueurs() {
 
 function afficherText(text) {
     var area = document.getElementById("messageOutput");
-    area.innerHTML = area.innerHTML + text;
+    if (text != "") {
+        area.innerHTML = area.innerHTML + text;
+    }
 }
 
 function affichageMessages() {
@@ -179,24 +181,26 @@ function message() {
 
     var message = document.getElementById("message").value;
     document.getElementById("message").value = "";
-    fetch('messagerie.php', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({message : message})
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Erreur HTTP, statut : ' + response.status);
-        }
-        return response.json();
-    })
-    .then(data => {
-        if (data.success) {
-            console.log("Message envoyé");
-        } else {
-            console.error(data.message);
-        }
-    })
+    if (message  != "") {
+        fetch('messagerie.php', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({message : message})
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erreur HTTP, statut : ' + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                console.log("Message envoyé");
+            } else {
+                console.error(data.message);
+            }
+        })
+    }
 }
 
 
@@ -221,3 +225,16 @@ function ticTac () {
 
 
 setInterval(ticTac, 50);
+
+
+function submitOnEnter(event) {
+    if (event.which === 13) {
+        if (!event.repeat) {
+            const newEvent = new Event("submit", {cancelable: true});
+            event.target.form.dispatchEvent(newEvent);
+        }
+        event.preventDefault(); // Prevents the addition of a new line in the text field
+    }
+}
+
+document.getElementById("message").addEventListener("keydown", submitOnEnter);
