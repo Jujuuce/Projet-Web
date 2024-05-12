@@ -55,7 +55,8 @@
 </head>
 <body>
     <div id="map">
-        <div id="grid-container"></div>
+        <div id="grid-container">
+        </div>
 
         <div id="chat">
 

@@ -9,8 +9,8 @@ if (isset($_SESSION[""]) && $_SESSION[""]) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = json_decode(file_get_contents("php://input"));
-    $y = $data->y;
-    $x = $data->x;
+    $y = $data->coordy;
+    $x = $data->coordx;
     $orient = $data->orient;
 
     // Connexion à la base de données

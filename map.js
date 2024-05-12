@@ -21,70 +21,32 @@ function checkID() {
 
 checkID();
 
-function createGrid(x,y) {
-    const gridContainer = document.getElementById('grid-container');
-    for (let i = 0; i < x; i++) {
-        for (let j = 0; j < y; j++) {
-            const gridCell = document.createElement('div');
-            gridCell.className = 'grid-cell';
-            gridContainer.appendChild(gridCell);
-        }
-    }
-}
-
-var coord = 0;
+var coordx = 1;
+var coordy = 1;
 var start = true;
-var place = document.getElementsByClassName('grid-cell');
-var positionUsers = {};
+var carte = document.getElementById("grid-container");
 
-function coordonnatesToNumber(x,y){
-    return y * 120 + x
-}
-
-function numberToCoordonnates(nb) {
-    var reste = nb % 120
-    var res = [reste, (nb-reste)/120]
-    return res;
-}
 
 function deplacement(key) {
-
     var orient = 's';
-    var temp = coord;
     if (key == "ArrowRight") {
-        if (coord % 120 == 119) {
-            return;
-        }
-        temp = coord + 1;
+        coordx = coordx + 10;
         orient = 'e';
     } else if (key == "ArrowLeft") {
-        if (coord % 120 == 0) {
-            return;
-        }
-        temp = coord - 1;
+        coordx = coordx - 10;
         orient = 'w';
     } else if (key == "ArrowDown") {
-        if (coord >= 120*80) {
-            return;
-        }
-        temp = coord + 120;
+        coordy = coordy + 10;
         orient = 's';
     } else if (key == "ArrowUp") {
-        if (coord < 120) {
-            return;
-        }
-        temp = coord - 120;
+        coordy = coordy - 10;
         orient = 'n';
     }
-
-    var coordonnees = numberToCoordonnates(temp);
-    var x = coordonnees[0];
-    var y = coordonnees[1];
 
     fetch("position.php", {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({x: x, y: y, orient: orient})
+        body: JSON.stringify({coordx: coordx, coordy: coordy, orient: orient})
     })
     .then(response => {
         if (!response.ok) {
@@ -94,30 +56,29 @@ function deplacement(key) {
     })
     .then(content => {
         if (content["success"]) {
-            place[coord].innerHTML = "";
-            coord = temp;
-            console.log("Position updated. X: " + x + " Y: " + y);
+            console.log("Position updated. X: " + coordx + " Y: " + coordy);
         } else {
             console.log(content["message"]);
         }
     })
 }
 
-createGrid(80, 120);
 
-function affichageJoueur(name, x, y, orient) {
-    var place = document.getElementsByClassName('grid-cell');
-    var nb = coordonnatesToNumber(x,y);
+function affichageJoueur(name, orient) {
+    var temp = "";
     if (orient == 'n') {
-        place[nb].innerHTML = '<p class="avatar">' + name + '</p><img src="P1/dos.png" class="player"/>';
+        temp = temp + "<div id='" + name + "' class='users'><p class='avatar'>" + name + "</p><img src='P1/dos.png'/></div>"
     } else if (orient == 's') {
-        place[nb].innerHTML = '<p class="avatar">' + name + '</p><img src="P1/face.png" class="player"/>';
+        temp = temp + "<div id='" + name + "' class='users'><p class='avatar'>" + name + "</p><img src='P1/face.png'/></div>"
     } else if (orient == 'w') {
-        place[nb].innerHTML = '<p class="avatar">' + name + '</p><img src="P1/gauche.png" class="player"/>';
+        temp = temp + "<div id='" + name + "' class='users'><p class='avatar'>" + name + "</p><img src='P1/gauche.png'/></div>"
     } else {
-        place[nb].innerHTML = '<p class="avatar">' + name + '</p><img src="P1/droite.png" class="player"/>';
+        temp = temp + "<div id='" + name + "' class='users'><p class='avatar'>" + name + "</p><img src='P1/droite.png'/></div>"
     }
+    return temp;
 }
+
+
 
 function affichageJoueurs() {
     fetch("position.php", {
@@ -132,17 +93,21 @@ function affichageJoueurs() {
     })
     .then(content => {
         if (content["success"]) {
-            for (var key in positionUsers) {
-                place[positionUsers[key]].innerHTML = "";
-            }
-            positionUsers = {};
+            carte.innerHTML = "";
+            var temp = "";
             for (let i = 0; i < content["users"].length; i++) {
-                positionUsers[content["users"][i][0]] = coordonnatesToNumber(content["users"][i][1],content["users"][i][2]);
-                affichageJoueur(content["users"][i][0],content["users"][i][1],content["users"][i][2],content["users"][i][3]);
                 if (start && content["users"][i][4] == 1) {
-                    coord = coordonnatesToNumber(content["users"][i][1],content["users"][i][2])
+                    coordx = content["users"][i][1];
+                    coordy = content["users"][i][2];
                     start = false;
                 }
+                temp = temp + affichageJoueur(content["users"][i][0],content["users"][i][3])
+            }
+            carte.innerHTML = temp;
+            for (let i = 0; i < content["users"].length; i++) {
+                var affich = document.getElementById(content["users"][i][0]);
+                affich.style.top = content["users"][i][2] + "px";
+                affich.style.left = content["users"][i][1] + "px";
             }
         }
     })
@@ -208,6 +173,7 @@ document.getElementById("messagerie").addEventListener("submit", function(event)
     event.preventDefault();
     message();
 });
+
 
 
 document.addEventListener('keydown', (event) => {
