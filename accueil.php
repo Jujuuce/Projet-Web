@@ -26,10 +26,9 @@
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
 
         unset($_SESSION['login']);
-        unset($_SESSION['moment']);
     }
 
-    if(isset($_POST['delete'])) {
+    if (isset($_POST['delete'])) {
         $dsn = 'mysql:host=localhost;dbname=dataBase_projet';
         $db_username = 'root';
         $db_password = '';
@@ -45,7 +44,6 @@
         $requete->execute(array('a' => $_SESSION['login']));
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
 
-        unset($_SESSION['moment']);
         unset($_SESSION['login']);
     }
 ?>
