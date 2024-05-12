@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $response['success'] = false;
             $response['message'] = 'Utilisateur déjà existant';
         } else {
-            $requete = $bdd->prepare('UPDATE users SET login = :a WHERE login = :b');
+            $requete = $bdd->prepare('UPDATE Users SET login = :a WHERE login = :b');
             $requete->execute(array('a' => $login, 'b' => $_SESSION['login']));
             $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
             $response['success'] = true;

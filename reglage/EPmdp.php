@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $response = array();
     try {
-        $requete = $bdd->prepare('UPDATE users SET password = :a WHERE login = :b');
+        $requete = $bdd->prepare('UPDATE Users SET password = :a WHERE login = :b');
         $requete->execute(array('a' => $password, 'b' => $_SESSION['login']));
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
         $response['success'] = true;
