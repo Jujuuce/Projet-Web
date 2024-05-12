@@ -195,7 +195,6 @@ function ticTac () {
     }
 }
 
-affichageMessages();
 
 
 setInterval(ticTac, 50);
