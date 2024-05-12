@@ -21,34 +21,39 @@ function checkID() {
 
 checkID();
 
+var carte = document.getElementById("grid-container");
 var coordx = 1;
 var coordy = 1;
-var L = 59;
-var H = 35;
-var tailleCellule = 25.6;
+var orient = 's';
+var L = 60;
+var H = 34;
+var largeurCellule = carte.offsetWidth / L;
+var hauteurCellule = carte.offsetHeight / H;
+var largeurOffset = -largeurCellule/8;
+var hauteurOffset = -hauteurCellule/2;
 var start = true;
-var carte = document.getElementById("grid-container");
 
 function deplacement(key) {
-    var orient = 's';
+    var tempx = coordx;
+    var tempy = coordy;
     if (key == "ArrowRight") {
-        if (coordx < L - 1) coordx = coordx + 1;
+        if (coordx < L - 1) tempx = tempx + 1;
         orient = 'e';
     } else if (key == "ArrowLeft") {
-        if (coordx > 0) coordx = coordx - 1;
+        if (coordx > 0) tempx = tempx - 1;
         orient = 'w';
     } else if (key == "ArrowDown") {
-        if (coordy < H - 1) coordy = coordy + 1;
+        if (coordy < H - 1) tempy = tempy + 1;
         orient = 's';
     } else if (key == "ArrowUp") {
-        if (coordy > 0) coordy = coordy - 1;
+        if (coordy > 1) tempy = tempy - 1;
         orient = 'n';
     }
 
     fetch("position.php", {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({coordx: coordx * tailleCellule, coordy: coordy * tailleCellule, orient: orient})
+        body: JSON.stringify({coordx: tempx, coordy: tempy, orient: orient})
     })
     .then(response => {
         if (!response.ok) {
@@ -58,7 +63,13 @@ function deplacement(key) {
     })
     .then(content => {
         if (content["success"]) {
-            console.log("Position updated. X: " + coordx + " Y: " + coordy);
+            if (content["message"] == "yes") {
+                coordx = tempx;
+                coordy = tempy;
+                console.log("Position updated. X: " + coordx + " Y: " + coordy);
+            } else {
+                console.log(content["message"]);
+            }
         } else {
             console.log(content["message"]);
         }
@@ -79,8 +90,6 @@ function affichageJoueur(name, orient) {
     }
     return temp;
 }
-
-
 
 function affichageJoueurs() {
     fetch("position.php", {
@@ -108,8 +117,10 @@ function affichageJoueurs() {
             carte.innerHTML += temp;
             for (let i = 0; i < content["users"].length; i++) {
                 var affich = document.getElementById(content["users"][i][0]);
-                affich.style.top = content["users"][i][2] + "px";
-                affich.style.left = content["users"][i][1] + "px";
+                affich.style.top = content["users"][i][2]*hauteurCellule + hauteurOffset + "px";
+                affich.style.left = content["users"][i][1]*largeurCellule + largeurOffset + "px";
+                affich.style.width = largeurCellule + 5 + "px";
+                affich.style.height = hauteurCellule + 5 + "px";
             }
         }
     })
@@ -172,18 +183,18 @@ function message() {
     }
 }
 
-
 document.getElementById("messagerie").addEventListener("submit", function(event) {
     event.preventDefault();
     message();
 });
 
-
-
 document.addEventListener('keydown', (event) => {
-    var name = event.key;
-    if (start == false && (name == "ArrowRight" || name == "ArrowLeft" || name == "ArrowDown" || name == "ArrowUp")) {
-        deplacement(name);
+    var focusedElement = document.activeElement;
+    if (focusedElement.tagName !== 'TEXTAREA') {
+        var name = event.key;
+        if (!start && (name == "ArrowRight" || name == "ArrowLeft" || name == "ArrowDown" || name == "ArrowUp")) {
+            deplacement(name);
+        }
     }
 });
 
@@ -195,10 +206,7 @@ function ticTac () {
     affichageMessages(0);
 }
 
-
-
 setInterval(ticTac, 50);
-
 
 function submitOnEnter(event) {
     if (event.which === 13) {
