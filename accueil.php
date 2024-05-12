@@ -1,6 +1,10 @@
 <?php
     session_start();
     
+    if (isset($_SERVER['HTTP_CACHE_CONTROL']) && (strpos($_SERVER['HTTP_CACHE_CONTROL'], 'no-cache') !== false || strpos($_SERVER['HTTP_CACHE_CONTROL'], 'max-age=0') !== false)) {
+        unset($_SESSION['moment']);
+    }
+
     if(isset($_POST['logout'])) {
         // Connexion à la base de données
         $dsn = 'mysql:host=localhost;dbname=dataBase_projet';
