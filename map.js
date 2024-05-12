@@ -93,7 +93,7 @@ function affichageJoueurs() {
     })
     .then(content => {
         if (content["success"]) {
-            carte.innerHTML = "";
+            carte.innerHTML = "<img src=\"pokemon3.png\" alt=\"map\" class=\"map\"/>";
             var temp = "";
             for (let i = 0; i < content["users"].length; i++) {
                 if (start && content["users"][i][4] == 1) {
@@ -103,7 +103,7 @@ function affichageJoueurs() {
                 }
                 temp = temp + affichageJoueur(content["users"][i][0],content["users"][i][3])
             }
-            carte.innerHTML = temp;
+            carte.innerHTML += temp;
             for (let i = 0; i < content["users"].length; i++) {
                 var affich = document.getElementById(content["users"][i][0]);
                 affich.style.top = content["users"][i][2] + "px";
