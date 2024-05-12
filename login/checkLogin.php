@@ -22,19 +22,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit(); // Arrêter l'exécution du script en cas d'erreur de connexion
     }
 
-    $requete = $bdd->prepare('SELECT * FROM `Users` WHERE Users.login = :a AND Users.password = :b');
-    $requete->execute(array('a' => $username, 'b' => $password));
+    $requete = $bdd->prepare('SELECT * FROM `Users` WHERE Users.login = :a');
+    $requete->execute(array('a' => $username));
     $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
 
     $response = array();
-    if (count($resultats) == 1 && $resultats[0]["connected"] == 0) {
+    if (count($resultats) == 1 && $resultats[0]["connected"] == 0 && password_verify($password, $resultats[0]["password"])) {
         $response['success'] = true;
         $response['message'] = 'Connexion reussie';
         $_SESSION["login"] = $username;
         $requete = $bdd->prepare('UPDATE Users SET Users.connected = 1, Users.lastConnection = :a WHERE Users.login = :b');
         $requete->execute(array('a' => time(), 'b' => $username));
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
-    } else if (count($resultats) == 1 && $resultats[0]["connected"] == 1) {
+    } else if (count($resultats) == 1 && $resultats[0]["connected"] == 1 && password_verify($password, $resultats[0]["password"])) {
         $response["success"] = false;
         $response["message"] = "Utilisateur déjà connecté";
     } else {
@@ -43,8 +43,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
     try {
-        $requete = $bdd->prepare('UPDATE Users SET Users.connected = 1, Users.lastConnection = :a WHERE Users.login = :b');
-        $requete->execute(array('a' => time(), 'b' => $_SESSION['login']));
         $requete = $bdd->prepare('UPDATE Users SET Users.connected = 0 WHERE Users.lastConnection < :a');
         $requete->execute(array('a' => time() - 1));
     } catch (PDOException $e) {
