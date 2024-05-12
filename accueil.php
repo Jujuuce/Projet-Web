@@ -22,6 +22,7 @@
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
 
         unset($_SESSION['login']);
+        unset($_SESSION['moment']);
     }
 
     if(isset($_POST['delete'])) {
@@ -39,6 +40,8 @@
         $requete = $bdd->prepare('DELETE FROM Users WHERE Users.login = :a');
         $requete->execute(array('a' => $_SESSION['login']));
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+        unset($_SESSION['moment']);
         unset($_SESSION['login']);
     }
 ?>
