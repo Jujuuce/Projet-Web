@@ -22,32 +22,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit(); // Arrêter l'exécution du script en cas d'erreur de connexion
     }
 
-    try {
-        $requete = $bdd->prepare('UPDATE Users SET Users.connected = 1, Users.lastConnection = :a WHERE Users.login = :b');
-        $requete->execute(array('a' => time(), 'b' => $_SESSION['login']));
-        $requete = $bdd->prepare('UPDATE Users SET Users.connected = 0 WHERE Users.lastConnection < :a');
-        $requete->execute(array('a' => time() - 1));
-    } catch (PDOException $e) {
-        $response['users'] = false;
-        $response['success'] = false;
-        $response['message'] = 'Erreur : ' . $e->getMessage();
-        echo json_encode($response);
-        exit(); // Arrêter l'exécution du script en cas d'erreur de connexion
-    }
-
     $requete = $bdd->prepare('SELECT * FROM `Users` WHERE Users.login = :a AND Users.password = :b');
     $requete->execute(array('a' => $username, 'b' => $password));
     $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
 
     $response = array();
-    if (count($resultats) == 1 && $resultats["connected"] == 0) {
+    if (count($resultats) == 1 && $resultats[0]["connected"] == 0) {
         $response['success'] = true;
         $response['message'] = 'Connexion reussie';
         $_SESSION["login"] = $username;
         $requete = $bdd->prepare('UPDATE Users SET Users.connected = 1, Users.lastConnection = :a WHERE Users.login = :b');
         $requete->execute(array('a' => time(), 'b' => $username));
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
-    } else if (count($resultats) == 1 && $resultats["connected"] == 1) {
+    } else if (count($resultats) == 1 && $resultats[0]["connected"] == 1) {
         $response["success"] = false;
         $response["message"] = "Utilisateur déjà connecté";
     } else {
@@ -55,5 +42,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $response["message"] = "Utilisateur ou mot de passe incorrect";
     }
     
+    try {
+        $requete = $bdd->prepare('UPDATE Users SET Users.connected = 1, Users.lastConnection = :a WHERE Users.login = :b');
+        $requete->execute(array('a' => time(), 'b' => $_SESSION['login']));
+        $requete = $bdd->prepare('UPDATE Users SET Users.connected = 0 WHERE Users.lastConnection < :a');
+        $requete->execute(array('a' => time() - 1));
+    } catch (PDOException $e) {
+        
+    }
+
     echo json_encode($response);
 }
