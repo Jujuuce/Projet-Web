@@ -26,6 +26,7 @@
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
 
         unset($_SESSION['login']);
+        header('Location: /projet/login/login.php');
     }
 ?>
 
