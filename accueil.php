@@ -79,8 +79,7 @@
             </div>
 
             <div id="messageBox">
-                <div id="messageOutput">
-                </div>
+                <div id="messageOutput"></div>
             </div>
             <div id="messageInput">
                 <form id="messagerie">

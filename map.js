@@ -113,15 +113,17 @@ function affichageJoueurs() {
     })
 }
 
+var area = document.getElementById("messageOutput");
+
 function afficherText(text) {
-    var area = document.getElementById("messageOutput");
     if (text != "") {
         area.innerHTML = area.innerHTML + text;
     }
 }
 
-function affichageMessages() {
-    fetch("messagerie.php", {
+function affichageMessages(temp) {
+    const queryParams = new URLSearchParams({ temp }).toString();
+    fetch(`messagerie.php?${queryParams}`, {
         method: 'GET',
         headers: {'Content-Type': 'application/json;charset=utf-8'}
     })
@@ -186,8 +188,14 @@ document.addEventListener('keydown', (event) => {
 
 function ticTac () {
     affichageJoueurs();
-    affichageMessages();
+    if (area.innerHTML == "") {
+        affichageMessages(1);
+    } else {
+        affichageMessages(0);
+    }
 }
+
+affichageMessages();
 
 
 setInterval(ticTac, 50);

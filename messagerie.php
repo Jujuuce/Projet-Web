@@ -46,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $db_username = 'root';
     $db_password = '';
     $response = array();
+    $vide = $_GET['temp'];
 
     try {
         $bdd = new PDO($dsn, $db_username, $db_password);
@@ -60,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     try {
 
-        if (isset($_SESSION["moment"])) {
+        if (isset($_SESSION["moment"]) && $vide == '0') {
             $moment = $_SESSION["moment"];
             $requete = $bdd->prepare('SELECT * FROM `messages` WHERE messages.id > :a');
             $requete->execute(array('a' => $moment));
