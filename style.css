@@ -156,16 +156,14 @@ h1.formTitle {
     width: 40%;
 }
 
-
+img.map {
+    height: 100%;
+    width: 100%;
+}
 
 #grid-container {
     height: 100%;
     width: 80%;
-    background-image: url("pokemon3.png");
-    background-position: center center;
-    background-size: 100% 100%;
-    display: grid;
-    grid-template-columns: repeat(120, auto);
 }
 
 .users {
