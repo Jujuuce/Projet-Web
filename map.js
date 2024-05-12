@@ -21,8 +21,11 @@ function checkID() {
 
 checkID();
 
-var coordx = 1;
-var coordy = 1;
+var coordx = 0;
+var coordy = 0;
+var L = 56;
+var H = 39;
+var tailleCellule = 15;
 var start = true;
 var carte = document.getElementById("grid-container");
 
@@ -30,23 +33,23 @@ var carte = document.getElementById("grid-container");
 function deplacement(key) {
     var orient = 's';
     if (key == "ArrowRight") {
-        coordx = coordx + 10;
+        if (coordx < L - 1) coordx = coordx + 1;
         orient = 'e';
     } else if (key == "ArrowLeft") {
-        coordx = coordx - 10;
+        if (coordx > 0) coordx = coordx - 1;
         orient = 'w';
     } else if (key == "ArrowDown") {
-        coordy = coordy + 10;
+        if (coordy < H - 1) coordy = coordy + 1;
         orient = 's';
     } else if (key == "ArrowUp") {
-        coordy = coordy - 10;
+        if (coordy > 0) coordy = coordy - 1;
         orient = 'n';
     }
 
     fetch("position.php", {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({coordx: coordx, coordy: coordy, orient: orient})
+        body: JSON.stringify({coordx: coordx * tailleCellule, coordy: coordy * tailleCellule, orient: orient})
     })
     .then(response => {
         if (!response.ok) {
@@ -93,7 +96,7 @@ function affichageJoueurs() {
     })
     .then(content => {
         if (content["success"]) {
-            carte.innerHTML = "<img src=\"pokemon3.png\" alt=\"map\" class=\"map\"/>";
+            carte.innerHTML = "<img src=\"pokemon4.png\" alt=\"map\" class=\"map\"/>";
             var temp = "";
             for (let i = 0; i < content["users"].length; i++) {
                 if (start && content["users"][i][4] == 1) {
