@@ -2,12 +2,6 @@
 
 session_start();
 
-if (isset($_SESSION['login'])) {
-    header('Location: ../accueil.php');
-} else if (isset($_SESSION['moment'])) {
-    unset($_SESSION['moment']);
-}
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = json_decode(file_get_contents("php://input"));
     $username = $data->username;
