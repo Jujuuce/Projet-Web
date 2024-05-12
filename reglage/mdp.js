@@ -21,19 +21,23 @@ function checkID() {
 
 checkID();
 
+function newPass() {
 
-
-
-function newLogin() {
-
-    var login = document.getElementById("login").value;
+    var password = document.getElementById("pass").value;
+    var password1 = document.getElementById("pass1").value;
     var messageBox = document.getElementById("errorMessage");
     messageBox.innerHTML = "";
 
-    fetch('EPnewLogin.php', {
+    if (password !== password1) {
+        console.error("Les mots de passe ne correspondent pas");
+        messageBox.innerHTML = "Les mots de passe ne correspondent pas";
+        return;
+    }
+
+    fetch('EPmdp.php', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({login: login})
+        body: JSON.stringify({password: password})
     })
     .then(response => {
         if (!response.ok) {
@@ -43,7 +47,7 @@ function newLogin() {
     })
     .then(data => {
         if (data.success) {
-            window.alert("Login modifié");
+            window.alert("Mot de passe modifié");
             window.location.replace("../accueil.php");
         } else {
             console.error(data.message);
@@ -51,9 +55,7 @@ function newLogin() {
     })
 }
 
-
-
-document.getElementById("newLogin").addEventListener("submit", function(event) {
+document.getElementById("newPass").addEventListener("submit", function(event) {
     event.preventDefault();
-    newLogin();
+    newPass();
 });
