@@ -30,23 +30,23 @@ var H = 34;
 var largeurCellule = carte.offsetWidth / L;
 var hauteurCellule = carte.offsetHeight / H;
 var largeurOffset = -largeurCellule/8;
-var hauteurOffset = -hauteurCellule/2;
+var hauteurOffset = -1.2*hauteurCellule/2;
 var start = true;
 
 function deplacement(key) {
     var tempx = coordx;
     var tempy = coordy;
     if (key == "ArrowRight") {
-        if (coordx < L - 1) tempx = tempx + 1;
+        tempx = tempx + 1;
         orient = 'e';
     } else if (key == "ArrowLeft") {
-        if (coordx > 0) tempx = tempx - 1;
+        tempx = tempx - 1;
         orient = 'w';
     } else if (key == "ArrowDown") {
-        if (coordy < H - 1) tempy = tempy + 1;
+        tempy = tempy + 1;
         orient = 's';
     } else if (key == "ArrowUp") {
-        if (coordy > 1) tempy = tempy - 1;
+        tempy = tempy - 1;
         orient = 'n';
     }
 
@@ -67,8 +67,6 @@ function deplacement(key) {
                 coordx = tempx;
                 coordy = tempy;
                 console.log("Position updated. X: " + coordx + " Y: " + coordy);
-            } else {
-                console.log(content["message"]);
             }
         } else {
             console.log(content["message"]);
