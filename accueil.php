@@ -42,6 +42,7 @@
 <body>
     <div id="map">
         <div id="grid-container">
+            <img src="pokemon3.png" alt="map" class="map"/>
         </div>
 
         <div id="chat">
