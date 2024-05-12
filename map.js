@@ -21,14 +21,13 @@ function checkID() {
 
 checkID();
 
-var coordx = 0;
-var coordy = 0;
-var L = 56;
-var H = 39;
-var tailleCellule = 15;
+var coordx = 1;
+var coordy = 1;
+var L = 59;
+var H = 35;
+var tailleCellule = 25.6;
 var start = true;
 var carte = document.getElementById("grid-container");
-
 
 function deplacement(key) {
     var orient = 's';
