@@ -2,7 +2,8 @@
     session_start();
     if(isset($_SESSION['login'])){
         header('Location: ../accueil.php');
-    } else if (isset($_SESSION['moment'])){
+    } 
+    if (isset($_SESSION['moment'])){
         unset($_SESSION['moment']);
     }
 ?>
