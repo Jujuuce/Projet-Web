@@ -34,8 +34,8 @@
 <body>
 <h1 class="formTitle">Paramètres</h1>
     <div id="reglages">
-        <a href="changermdp.php"><button>Modifier l'identifiant</button></a>
-        <a href="changerlogin.php"><button>Modifier le mot de passe</button></a>
+        <a href="changerlogin.php"><button>Modifier l'identifiant</button></a>
+        <a href="changermdp.php"><button>Modifier le mot de passe</button></a>
         <?php if(isset($_SESSION['login'])): ?>
             <form method="post" class="formButton">
                 <input type="submit" name="delete" value="Supprimer le compte">
