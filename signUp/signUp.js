@@ -6,6 +6,12 @@ function signUp() {
     var messageBox = document.getElementById("errorMessage");
     messageBox.innerHTML = "";
 
+    if (username === '' || password === '' || password2 === '') {
+        console.error('Username and password are required.');
+        messageBox.innerHTML = "Veuillez remplir tous les champs.";
+        return;
+    }
+
     if (password !== password2) {
         console.error("Les mots de passe ne correspondent pas");
         messageBox.innerHTML = "Les mots de passe ne correspondent pas";
