@@ -186,13 +186,11 @@ document.addEventListener('keydown', (event) => {
 });
 
 
+affichageMessages(1);
+
 function ticTac () {
     affichageJoueurs();
-    if (area.innerHTML == "") {
-        affichageMessages(1);
-    } else {
-        affichageMessages(0);
-    }
+    affichageMessages(0);
 }
 
 
