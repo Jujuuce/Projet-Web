@@ -6,6 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = json_decode(file_get_contents("php://input"));
     $username = $data->username;
     $password = $data->password;
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     // Connexion à la base de données
     $dsn = 'mysql:host=localhost;dbname=dataBase_projet';
@@ -32,13 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $response['message'] = 'Utilisateur déjà existant';
     } else {
         $requete = $bdd->prepare('INSERT INTO Users (login, password, connected, X, Y, orientation, lastConnection) VALUES (:a, :b, :c, 13, 17, :d, :e)');
-        $requete->execute(array('a' => $username, 'b' => $password, 'c' => 1, 'd' => 's', 'e' => time()));
+        $requete->execute(array('a' => $username, 'b' => $hashedPassword, 'c' => 1, 'd' => 's', 'e' => time()));
         $response['success'] = true;
         $response['message'] = 'Inscription réussie';
         $_SESSION["login"] = $username;
-        $requete = $bdd->prepare('UPDATE Users SET Users.connected = 1 WHERE Users.login = :a');
-        $requete->execute(array('a' => $username));
-        $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
     }
 
     echo json_encode($response);
