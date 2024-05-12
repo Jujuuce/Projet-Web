@@ -62,7 +62,7 @@
             </div>
             <div id="messageInput">
                 <form id="messagerie">
-                    <textarea name="message" cols="25" rows="5" id="message" type="text"></textarea>
+                    <textarea name="message" cols="25" rows="5" id="message" type="text" placeholder="Message"></textarea>
                     <input type="submit"></input>
                 </form>
             </div>

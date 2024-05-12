@@ -117,8 +117,8 @@ function affichageJoueurs() {
                 var affich = document.getElementById(content["users"][i][0]);
                 affich.style.top = content["users"][i][2]*hauteurCellule + hauteurOffset + "px";
                 affich.style.left = content["users"][i][1]*largeurCellule + largeurOffset + "px";
-                affich.style.width = largeurCellule + 5 + "px";
-                affich.style.height = hauteurCellule + 5 + "px";
+                affich.style.width = 1.2*largeurCellule + "px";
+                affich.style.height = 1.2*hauteurCellule + "px";
             }
         }
     })
