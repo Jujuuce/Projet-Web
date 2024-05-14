@@ -8,7 +8,7 @@ body {
 	width: 100%;
     height: 100%;
 	margin: auto;
-	font-family: "Gill Sans", sans-serif;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
 
@@ -69,19 +69,15 @@ input[type="submit"]:focus, button:focus {
 }
 
 a {
-    color: #333;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-a:hover {
-    color: #666;
-}
-
 #reglages {
-    width: 50%;
-    display: flex;
-    justify-content: space-around;
+    width: 75%;
+    margin: auto;
+    border: solid black;
+    border-radius: 20px;
 }
 
 label {
@@ -168,8 +164,9 @@ h1.formTitle {
     padding:10px;
 }
 
-.formButton {
-    width: 40%;
+#loginForm input[type="submit"], #signUpForm input[type="submit"] {
+    margin: auto;
+    width: 10%;
 }
 
 img.map {
@@ -207,18 +204,17 @@ img.map {
     height: auto;
 }
 
-.avatar {
+div.avatar {
+    font-weight: bold;
     position: absolute;
     z-index: 1002;
     background-color: white;
     color:black;
     bottom:100%;
-    width: auto;
-    height: auto;
+    height: 1.5em;
     font-size: 15px;
+    border-radius: 10%;
 }
-
-
 
 #decoButton {
     height:5%;
@@ -229,4 +225,29 @@ img.map {
 textarea {
     resize : none;
     border-radius: 5px;
+}
+
+div.quitter {
+    width: 50px;
+    height: 50px;
+    margin: 20px;
+    border: solid black;
+    border-radius: 15px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+div.quitter img {
+    width: 50px;
+}
+
+#reglages {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#reglages button, #reglages input[type="submit"] {
+    margin: 20px;
 }

@@ -76,15 +76,15 @@ function deplacement(key) {
 
 
 function affichageJoueur(name, orient) {
-    var temp = "";
+    var avatar = "<div class='avatar'>&nbsp;" + name + "&nbsp;</div>";
     if (orient == 'n') {
-        temp = temp + "<div id='" + name + "' class='users'><p class='avatar'>" + name + "</p><img src='P1/dos.png'/></div>"
+        temp = "<div id='" + name + "' class='users'>" + avatar + "<img src='P1/dos.png'/></div>"
     } else if (orient == 's') {
-        temp = temp + "<div id='" + name + "' class='users'><p class='avatar'>" + name + "</p><img src='P1/face.png'/></div>"
+        temp = "<div id='" + name + "' class='users'>" + avatar + "<img src='P1/face.png'/></div>"
     } else if (orient == 'w') {
-        temp = temp + "<div id='" + name + "' class='users'><p class='avatar'>" + name + "</p><img src='P1/gauche.png'/></div>"
+        temp = "<div id='" + name + "' class='users'>" + avatar + "<img src='P1/gauche.png'/></div>"
     } else {
-        temp = temp + "<div id='" + name + "' class='users'><p class='avatar'>" + name + "</p><img src='P1/droite.png'/></div>"
+        temp = "<div id='" + name + "' class='users'>" + avatar + "<img src='P1/droite.png'/></div>"
     }
     return temp;
 }
@@ -110,7 +110,7 @@ function affichageJoueurs() {
                     coordy = content["users"][i][2];
                     start = false;
                 }
-                temp = temp + affichageJoueur(content["users"][i][0],content["users"][i][3])
+                temp += affichageJoueur(content["users"][i][0],content["users"][i][3])
             }
             carte.innerHTML += temp;
             for (let i = 0; i < content["users"].length; i++) {

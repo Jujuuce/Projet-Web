@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $heure = $temp['heure'];
             $mess = $temp['mess'];
             $_SESSION["moment"] = $temp['id'];
-            $allMessages[$i] = '[' . $heure . ']' . $user . ' : ' . $mess . '<br />';
+            $allMessages[$i] = '[' . $heure . ']' . ' ' . $user . ' : ' . $mess . '<br />';
         }
         
 
