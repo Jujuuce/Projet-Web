@@ -21,12 +21,15 @@
             exit(); // Arrêter l'exécution du script en cas d'erreur de connexion
         }
 
-        $requete = $bdd->prepare('UPDATE Users SET Users.connected = 0 WHERE Users.login = :a');
-        $requete->execute(array('a' => $_SESSION['login']));
-        $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
+        try {
+            $requete = $bdd->prepare('UPDATE Users SET Users.connected = 0 WHERE Users.login = :a');
+            $requete->execute(array('a' => $_SESSION['login']));
 
-        unset($_SESSION['login']);
-        header('Location: /projet/login/login.php');
+            unset($_SESSION['login']);
+            header('Location: /projet/login/login.php');
+        } catch (PDOException $e) {
+        
+        }
     }
 ?>
 
