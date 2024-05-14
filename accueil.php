@@ -44,6 +44,7 @@
     <script defer src="map.js"></script>
 </head>
 <body>
+    <div id="vitre"></div>
     <div id="map">
         <div id="grid-container">
             <img src="pokemon4.png" alt="map" class="map"/>

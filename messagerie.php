@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = json_decode(file_get_contents("php://input"));
     $message = $data->message;
     $timestamp = time();
-    $time = date("h:i", $timestamp);
+    $time = date("H:i", $timestamp);
 
     // Connexion à la base de données
     $dsn = 'mysql:host=localhost;dbname=dataBase_projet';
