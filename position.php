@@ -1,10 +1,11 @@
 <?php
 
 session_start();
-if (isset($_SESSION[""]) && $_SESSION[""]) {
-    header("Location: ../accueil.php");
-    exit();
+
+if (!isset($_SESSION['login'])) {
+    header('Location: ../login/login.php');
 }
+
 $L = 60;
 $H = 34;
 $positionsValides = [

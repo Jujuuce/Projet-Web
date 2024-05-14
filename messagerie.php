@@ -1,6 +1,11 @@
 <?php
 
 session_start();
+
+if (!isset($_SESSION['login'])) {
+    header('Location: ../login/login.php');
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = json_decode(file_get_contents("php://input"));
     $message = $data->message;
