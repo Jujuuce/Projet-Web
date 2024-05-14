@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $response['success'] = false;
         $response['message'] = 'Utilisateur déjà existant';
     } else {
-        $requete = $bdd->prepare('INSERT INTO Users (login, password, connected, X, Y, orientation, lastConnection) VALUES (:a, :b, :c, 13, 17, :d, :e)');
+        $requete = $bdd->prepare('INSERT INTO Users (login, password, connected, X, Y, orientation, lastConnection) VALUES (:a, :b, :c, 21, 5, :d, :e)');
         $requete->execute(array('a' => $username, 'b' => $hashedPassword, 'c' => 1, 'd' => 's', 'e' => time()));
         $response['success'] = true;
         $response['message'] = 'Inscription réussie';
