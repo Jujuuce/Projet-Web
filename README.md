@@ -1,6 +1,6 @@
 #Projet de licence en Techno Web
-JJ Town
+##JJ Town
 
 #Membres du groupe :
-Jérèmy Flèche
-Jules Roy
+##Jérèmy Flèche
+##Jules Roy
