@@ -28,6 +28,10 @@ function newPass() {
     var messageBox = document.getElementById("errorMessage");
     messageBox.innerHTML = "";
 
+    if (password == "" || password1 == "") {
+        messageBox.innerHTML = "Veuillez remplir tous les champs";
+        return;
+    } 
     if (password !== password1) {
         console.error("Les mots de passe ne correspondent pas");
         messageBox.innerHTML = "Les mots de passe ne correspondent pas";
@@ -47,10 +51,10 @@ function newPass() {
     })
     .then(data => {
         if (data.success) {
-            window.alert("Mot de passe modifié");
+            messageBox.innerHTML = data.message;
             window.location.replace("../accueil.php");
         } else {
-            console.error(data.message);
+            messageBox.innerHTML = data.message;
         }
     })
 }

@@ -15,7 +15,9 @@
 
         $requete = $bdd->prepare('DELETE FROM Users WHERE Users.login = :a');
         $requete->execute(array('a' => $_SESSION['login']));
-        $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
+        
+        $requete = $bdd->prepare('DELETE FROM messages WHERE user = :a');
+        $requete->execute(array('a' => $_SESSION['login']));
 
         unset($_SESSION['login']);
         header('Location: ../accueil.php');
@@ -28,21 +30,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>100x100 Grid</title>
+    <title>Paramètres</title>
     <link rel="stylesheet" href="../style.css">
     <script defer src="reglage.js"></script>
 </head>
 <body>
-<h1 class="formTitle">Paramètres</h1>
+    <h1 class="formTitle">Paramètres</h1>
+    <div class="quitter">
+        <a href="../accueil.php"><img src="../croix.png" /></a>
+    </div>
     <div id="reglages">
-        <a href="changerlogin.php"><button>Modifier l'identifiant</button></a>
+        <a href="changerlogin.php"><button>Modifier de pseudo</button></a>
         <a href="changermdp.php"><button>Modifier le mot de passe</button></a>
         <?php if(isset($_SESSION['login'])): ?>
             <form method="post" class="formButton">
                 <input type="submit" name="delete" value="Supprimer le compte">
             </form>
         <?php endif; ?>
-        <a href="../accueil.php">Revenir à l'accueil</a>
     </div>
 </body>
 </html>

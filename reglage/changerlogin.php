@@ -9,21 +9,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>100x100 Grid</title>
+    <title>Changer de pseudo</title>
     <link rel="stylesheet" href="../style.css">
     <script defer src="login.js"></script>
 </head>
 <body>
-    <h1 class="formTitle">Changer l'identifiant</h1>
+    <h1 class="formTitle">Changer de pseudo</h1>
     <div id="container">
+        <div class="retour">
+            <a href="reglage.php"><img src="../fleche_retour.png" /></a>
+        </div>
+        <div class="quitter">
+            <a href="../accueil.php"><img src="../croix.png" /></a>
+        </div>
         <form id="newLogin">
             <label for="login">Nouveau pseudo :</label>
             <input type="text" id="login" name="login"/>
             <input id="submitBouton" type="submit"/>
             <div id="errorMessage"></div>
         </form>
-        <a href="reglage.php">Revenir aux réglages</a>
-        <a href="../accueil.php">Revenir à l'accueil</a>
     </div>
 </body>
 </html>

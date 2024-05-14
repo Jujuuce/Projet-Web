@@ -43,10 +43,9 @@ function newLogin() {
     })
     .then(data => {
         if (data.success) {
-            window.alert("Login modifié");
             window.location.replace("../accueil.php");
         } else {
-            console.error(data.message);
+            messageBox.innerHTML = data.message;
         }
     })
 }
