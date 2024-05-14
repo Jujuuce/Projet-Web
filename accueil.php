@@ -44,6 +44,7 @@
     <div id="map">
         <div id="grid-container">
             <img src="pokemon4.png" alt="map" class="map"/>
+            <img src="calque.png" alt="calque" id="calque"/>
         </div>
 
         <div id="chat">

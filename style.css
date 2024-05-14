@@ -177,6 +177,15 @@ img.map {
     height: 100%;
 }
 
+#calque {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 100%;
+    z-index: 1001;
+}
+
 #grid-container {
     height: 100%;
     width: 80%;
@@ -200,7 +209,7 @@ img.map {
 
 .avatar {
     position: absolute;
-    z-index: 1001;
+    z-index: 1002;
     background-color: white;
     color:black;
     bottom:100%;
