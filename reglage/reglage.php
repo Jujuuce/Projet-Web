@@ -1,5 +1,8 @@
 <?php
     session_start();
+    if (!isset($_SESSION['login'])) {
+        header('Location: ../login/login.php');
+    }
     
     if (isset($_POST['delete'])) {
         $dsn = 'mysql:host=localhost;dbname=dataBase_projet';
