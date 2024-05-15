@@ -31,7 +31,7 @@ function signUp() {
     })
     .then(data => {
         if (data.success) {
-            window.location.replace("/projet/accueil.php");
+            window.location.replace("/projet/index.php");
         } else {
             messageBox.innerHTML = data.message;
         }
