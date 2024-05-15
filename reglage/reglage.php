@@ -18,9 +18,6 @@
 
         $requete = $bdd->prepare('DELETE FROM Users WHERE Users.login = :a');
         $requete->execute(array('a' => $_SESSION['login']));
-        
-        $requete = $bdd->prepare('DELETE FROM messages WHERE user = :a');
-        $requete->execute(array('a' => $_SESSION['login']));
 
         unset($_SESSION['login']);
         header('Location: ../index.php');
