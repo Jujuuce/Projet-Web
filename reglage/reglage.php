@@ -47,7 +47,7 @@
           <button>Modifier le pseudo</button>
         </form>
         <form style="display: inline" action="changermdp.php" method="get">
-          <button>Modifier le pseudo</button>
+          <button>Modifier le mot de passe</button>
         </form>
         <?php if(isset($_SESSION['login'])): ?>
             <form method="post" class="formButton">
