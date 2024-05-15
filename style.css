@@ -292,8 +292,7 @@ div.retour img {
 #JJ-town {
     position: absolute;
     text-align: center;
-    left: 45%;
-    right: 45%;
+    margin-left: 5%;
 }
 
 #JJ-town h1 {
