@@ -47,8 +47,8 @@
     <div id="vitre"></div>
     <div id="map">
         <div id="grid-container">
-            <img src="pokemon4.png" alt="map" class="map"/>
-            <img src="calque.png" alt="calque" id="calque"/>
+            <img src="pokemon4.png" alt="map" class="map">
+            <img src="calque.png" alt="calque" id="calque">
         </div>
 
         <div id="chat">
@@ -59,7 +59,9 @@
                         <input type="submit" name="logout" value="Déconnexion">
                     </form>
                 <?php endif; ?>
-                <a href="reglage/reglage.php"><button>Réglages</button></a>
+                <form style="display: inline" action="reglage/reglage.php" method="get">
+                  <button>Réglages</button>
+                </form>
             </div>
 
             <div id="messageBox">
@@ -67,8 +69,8 @@
             </div>
             <div id="messageInput">
                 <form id="messagerie">
-                    <textarea name="message" cols="25" rows="5" id="message" type="text" placeholder="Message"></textarea>
-                    <input type="submit"></input>
+                    <textarea name="message" cols="25" rows="5" id="message" placeholder="Message"></textarea>
+                    <input type="submit">
                 </form>
             </div>
         </div>
