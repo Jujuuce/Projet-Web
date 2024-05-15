@@ -289,10 +289,17 @@ div.retour img {
     height: 100%;
 }
 
-.currentMessage {
-    background-color: white;
-    border-radius: 5px;
-    position: relative;
-    bottom: 20px;
-    right: 40px;
+#JJ-town {
+    position: absolute;
+    text-align: center;
+    left: 45%;
+    right: 45%;
+}
+
+#JJ-town h1 {
+    font-size: 3em;
+    background-image: linear-gradient(to right, #fc5c7d, #6a82fb);
+    background-clip: text;
+    color: transparent;
+    -webkit-text-stroke: 1.5px #fff;
 }

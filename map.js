@@ -58,7 +58,7 @@ function deplacement(key) {
 
 
 function affichageJoueur(name, orient, modeUser) {
-    var avatar = "</div><div class='avatar'>&nbsp;" + name + "&nbsp;</div>";
+    var avatar = "<div class='avatar'>&nbsp;" + name + "&nbsp;</div>";
     if (modeUser) avatar = "<div class='avatarUser'>&nbsp;" + name + "&nbsp;</div>";
     if (orient == 'n') {
         temp = "<div id='" + name + "' class='users'>" + avatar + "<img class=\"perso\" src='P1/dos.png'/></div>"

@@ -50,6 +50,7 @@
 </head>
 <body>
     <div id="vitre"></div>
+    <div id="JJ-town"><h1>JJ Town</h1></div>
     <div id="map">
         <div id="grid-container">
         </div>
