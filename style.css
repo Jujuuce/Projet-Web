@@ -217,6 +217,19 @@ div.avatar {
     border-radius: 10%;
 }
 
+div.avatarUser {
+    font-weight: bold;
+    position: absolute;
+    z-index: 1002;
+    background-color: white;
+    color:red;
+    bottom:100%;
+    height: 1.5em;
+    font-size: 15px;
+    border: red solid 2px;
+    border-radius: 10%;
+}
+
 #decoButton {
     height:5%;
     background-color: blue;

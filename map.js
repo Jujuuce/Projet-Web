@@ -56,16 +56,17 @@ function deplacement(key) {
 }
 
 
-function affichageJoueur(name, orient) {
+function affichageJoueur(name, orient, modeUser) {
     var avatar = "<div class='avatar'>&nbsp;" + name + "&nbsp;</div>";
+    if (modeUser) avatar = "<div class='avatarUser'>&nbsp;" + name + "&nbsp;</div>";
     if (orient == 'n') {
-        temp = "<div id='" + name + "' class='users'>" + avatar + "<img src='P1/dos.png'/></div>"
+        temp = "<div id='" + name + "' class='users'>" + avatar + "<img class=\"perso\" src='P1/dos.png'/></div>"
     } else if (orient == 's') {
-        temp = "<div id='" + name + "' class='users'>" + avatar + "<img src='P1/face.png'/></div>"
+        temp = "<div id='" + name + "' class='users'>" + avatar + "<img class=\"perso\" src='P1/face.png'/></div>"
     } else if (orient == 'w') {
-        temp = "<div id='" + name + "' class='users'>" + avatar + "<img src='P1/gauche.png'/></div>"
+        temp = "<div id='" + name + "' class='users'>" + avatar + "<img class=\"perso\" src='P1/gauche.png'/></div>"
     } else {
-        temp = "<div id='" + name + "' class='users'>" + avatar + "<img src='P1/droite.png'/></div>"
+        temp = "<div id='" + name + "' class='users'>" + avatar + "<img class=\"perso\" src='P1/droite.png'/></div>"
     }
     return temp;
 }
@@ -84,14 +85,14 @@ function affichageJoueurs() {
     .then(content => {
         if (content["success"]) {
             carte.innerHTML = "<img src=\"pokemon4.png\" alt=\"map\" class=\"map\"/><img src=\"calque.png\" alt=\"map\" id=\"calque\"/>";
-            var temp = "";
             for (let i = 0; i < content["users"].length; i++) {
                 if (start && content["users"][i][4] == 1) {
                     coordx = content["users"][i][1];
                     coordy = content["users"][i][2];
                     start = false;
                 }
-                temp += affichageJoueur(content["users"][i][0],content["users"][i][3])
+                if (content["users"][i][4]) var temp = affichageJoueur(content["users"][i][0],content["users"][i][3], 1);
+                else var temp = affichageJoueur(content["users"][i][0],content["users"][i][3], 0);
             }
             carte.innerHTML += temp;
             for (let i = 0; i < content["users"].length; i++) {
@@ -100,6 +101,8 @@ function affichageJoueurs() {
                 affich.style.left = content["users"][i][1]*largeurCellule + largeurOffset + "px";
                 affich.style.width = 1.2*largeurCellule + "px";
                 affich.style.height = 1.2*hauteurCellule + "px";
+                var perso = document.getElementsByClassName("perso")[i];
+                perso.style.width = largeurCellule + "px";
             }
         }
     })
