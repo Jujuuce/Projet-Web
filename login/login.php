@@ -17,7 +17,7 @@
 	<title>JJ Town - Connexion</title>
 	<link href="../style.css" rel="stylesheet" >
 	<link rel="shortcut icon" type="image/png" href="../images/favicon.png">
-	<script defer type="text/javascript" src="checkLogin.js"></script>
+	<script defer src="checkLogin.js"></script>
 </head>
 <body>
     <h1 class="formTitle">Connexion</h1>
