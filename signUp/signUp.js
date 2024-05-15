@@ -33,7 +33,7 @@ function signUp() {
         if (data.success) {
             window.location.replace("/projet/accueil.php");
         } else {
-            console.error(data.message);
+            messageBox.innerHTML = data.message;
         }
     })
 }
