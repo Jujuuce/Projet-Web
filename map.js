@@ -1,26 +1,3 @@
-function checkID() {
-    fetch("idCheck.php", { 
-        method: 'GET',
-        headers: {'Content-Type': 'application/json;charset=utf-8'}
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("Erreur lors de la requête Fetch.");
-        }
-        return response.json();
-    })
-    .then(content => {
-        if (content["session"] == 0) {
-            window.location.replace("/projet/login/login.php");
-        }
-    })
-    .catch(error => {
-        console.error('Erreur lors de la récupération des données :', error);
-    });
-}
-
-checkID();
-
 var carte = document.getElementById("grid-container");
 var coordx = 1;
 var coordy = 1;
@@ -66,6 +43,10 @@ function deplacement(key) {
             if (content["message"] == "yes") {
                 coordx = tempx;
                 coordy = tempy;
+                console.log("Position updated. X: " + coordx + " Y: " + coordy);
+            } else if (content["message"] == "tp") {
+                coordx = content["x"];
+                coordy = content["y"];
                 console.log("Position updated. X: " + coordx + " Y: " + coordy);
             }
         } else {

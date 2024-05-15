@@ -1,6 +1,10 @@
 <?php
     session_start();
     
+    if (!isset($_SESSION['login'])) {
+        header('Location: /projet/login/login.php');
+    }
+
     if (isset($_SERVER['HTTP_CACHE_CONTROL']) && (strpos($_SERVER['HTTP_CACHE_CONTROL'], 'no-cache') !== false || strpos($_SERVER['HTTP_CACHE_CONTROL'], 'max-age=0') !== false)) {
         unset($_SESSION['moment']);
     }
