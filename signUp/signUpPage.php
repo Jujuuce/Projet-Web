@@ -4,7 +4,7 @@
         unset($_SESSION['moment']);
     }
     if(isset($_SESSION['login'])){
-        header('Location: ../accueil.php');
+        header('Location: ../index.php');
     } 
     
 ?>
