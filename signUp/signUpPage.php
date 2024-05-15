@@ -22,12 +22,12 @@
     <div id="container">
         <form id="signUpForm">
             <label for="username">Pseudo :</label>
-            <input type="text" id="username" name="username"/>
+            <input type="text" id="username" name="username">
             <label for="password">Mot de passe :</label>
-            <input type="password" id="password" name="password"/>
+            <input type="password" id="password" name="password">
             <label for="password2">Confirmer le mot de passe :</label>
-            <input type="password" id="password2" name="password2"/>
-            <input id="submitBouton" type="submit"/>
+            <input type="password" id="password2" name="password2">
+            <input id="submitBouton" type="submit">
             <div id="errorMessage"></div>
         </form>
         <a href="../login/login.php">Déjà inscrit ?</a>
