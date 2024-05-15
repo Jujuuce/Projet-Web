@@ -16,6 +16,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>JJ Town - Connexion</title>
 	<link href="../style.css" rel="stylesheet" >
+	<link rel="shortcut icon" type="image/png" href="../images/favicon.png"/>
 	<script defer type="text/javascript" src="checkLogin.js" defer></script>
 </head>
 <body>
