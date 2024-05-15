@@ -24,7 +24,7 @@
             <a href="reglage.php"><img alt="Retour" src="../fleche_retour.png"></a>
         </div>
         <div class="quitter">
-            <a href="../accueil.php"><img alt ="Retour à l'accueil" src="../croix.png"></a>
+            <a href="../index.php"><img alt ="Retour à l'accueil" src="../croix.png"></a>
         </div>
         <form id="newLogin">
             <label for="login">Nouveau pseudo :</label>
