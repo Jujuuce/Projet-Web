@@ -21,10 +21,10 @@
     <h1 class="formTitle">Changer le mot de passe</h1>
     <div id="container">
         <div class="retour">
-            <a href="reglage.php"><img alt="Retour" src="../fleche_retour.png"></a>
+            <a href="reglage.php"><img alt="Retour" src="../images/fleche_retour.png"></a>
         </div>
         <div class="quitter">
-            <a href="../index.php"><img alt="Retour à l'accueil" src="../croix.png"></a>
+            <a href="../index.php"><img alt="Retour à l'accueil" src="../images/croix.png"></a>
         </div>
         <form id="newPass">
             <label for="pass">Nouveau mot de passe :</label>
