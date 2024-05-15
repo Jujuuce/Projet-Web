@@ -45,7 +45,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JJ Town</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
     <script defer src="map.js"></script>
 </head>
 <body>
