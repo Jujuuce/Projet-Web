@@ -34,6 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $requete->execute(array('a' => $username, 'b' => $time, 'c' => $message));
         $response['success'] = true;
         $response['message'] = 'ok';
+        $response['pseudo'] = $username;
     } catch (PDOException $e) {
         $response['success'] = false;
         $response['message'] = 'Erreur : ' . $e->getMessage();

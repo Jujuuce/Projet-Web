@@ -174,6 +174,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $response['users'] = $positions;
         $response['success'] = true;
         $response['message'] = 'ok';
+        $response['pseudo'] = $_SESSION['login'];
 
     } catch (PDOException $e) {
         $response['users'] = false;

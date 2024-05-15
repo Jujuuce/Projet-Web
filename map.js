@@ -9,6 +9,7 @@ var hauteurCellule = carte.offsetHeight / H;
 var largeurOffset = -largeurCellule/8;
 var hauteurOffset = -1.2*hauteurCellule/2;
 var start = true;
+var pseudo = "";
 
 function deplacement(key) {
     var tempx = coordx;
@@ -57,7 +58,7 @@ function deplacement(key) {
 
 
 function affichageJoueur(name, orient, modeUser) {
-    var avatar = "<div class='avatar'>&nbsp;" + name + "&nbsp;</div>";
+    var avatar = "</div><div class='avatar'>&nbsp;" + name + "&nbsp;</div>";
     if (modeUser) avatar = "<div class='avatarUser'>&nbsp;" + name + "&nbsp;</div>";
     if (orient == 'n') {
         temp = "<div id='" + name + "' class='users'>" + avatar + "<img class=\"perso\" src='P1/dos.png'/></div>"
@@ -89,12 +90,11 @@ function affichageJoueurs() {
                 if (start && content["users"][i][4] == 1) {
                     coordx = content["users"][i][1];
                     coordy = content["users"][i][2];
+                    pseudo = content["pseudo"];
                     start = false;
                 }
-                if (content["users"][i][4]) var temp = affichageJoueur(content["users"][i][0],content["users"][i][3], 1);
-                else var temp = affichageJoueur(content["users"][i][0],content["users"][i][3], 0);
+                carte.innerHTML += affichageJoueur(content["users"][i][0],content["users"][i][3], content["users"][i][4]);
             }
-            carte.innerHTML += temp;
             for (let i = 0; i < content["users"].length; i++) {
                 var affich = document.getElementById(content["users"][i][0]);
                 affich.style.top = content["users"][i][2]*hauteurCellule + hauteurOffset + "px";

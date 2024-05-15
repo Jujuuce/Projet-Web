@@ -207,7 +207,7 @@ img.map {
 div.avatar {
     font-weight: bold;
     position: absolute;
-    z-index: 1002;
+    z-index: 1009;
     background-color: white;
     color:black;
     bottom:100%;
@@ -219,7 +219,7 @@ div.avatar {
 div.avatarUser {
     font-weight: bold;
     position: absolute;
-    z-index: 1002;
+    z-index: 1010;
     background-color: white;
     color:red;
     bottom:100%;
@@ -287,4 +287,12 @@ div.retour img {
     z-index: 3000;
     width: 80%;
     height: 100%;
+}
+
+.currentMessage {
+    background-color: white;
+    border-radius: 5px;
+    position: relative;
+    bottom: 20px;
+    right: 40px;
 }
