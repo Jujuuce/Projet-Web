@@ -24,7 +24,7 @@ function loginVerification() {
     })
     .then(data => {
         if (data.success) {
-            window.location.replace("/projet/accueil.php");
+            window.location.replace("/projet/index.php");
         } else {
             console.error(data.message);
             messageBox.innerHTML = data.message;
