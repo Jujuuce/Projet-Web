@@ -51,8 +51,6 @@
     <div id="vitre"></div>
     <div id="map">
         <div id="grid-container">
-            <img src="images/pokemon.png" alt="map" class="map">
-            <img src="images/calque.png" alt="calque" id="calque">
         </div>
 
         <div id="chat">
