@@ -15,6 +15,7 @@
     <meta charset="UTF-8">
     <title>JJ Town - Inscription</title>
     <link rel="stylesheet" type="text/css" href="../style.css">
+    <link rel="shortcut icon" type="image/png" href="../images/favicon.png"/>
     <script defer src="signUp.js"></script>
 </head>
 <body>
