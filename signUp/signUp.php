@@ -48,11 +48,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Créer la table messages si elle n'existe pas
     $bdd->exec("CREATE TABLE IF NOT EXISTS messages (
-        id INT AUTO_INCREMENT PRIMARY KEY,
+        id INT AUTO_INCREMENT,
         user VARCHAR(255) NOT NULL,
         heure VARCHAR(255) NOT NULL,
-        mess VARCHAR(255) NOT NULL
+        mess VARCHAR(255) NOT NULL,
+        PRIMARY KEY (id, user),
+        FOREIGN KEY (user) REFERENCES Users(login) ON DELETE CASCADE ON UPDATE CASCADE
     )");
+    
 
     // Vérifier si l'utilisateur existe déjà
     $requete = $bdd->prepare('SELECT * FROM `Users` WHERE Users.login = :a');
