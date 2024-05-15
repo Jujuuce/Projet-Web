@@ -27,8 +27,8 @@
             <input type="password" id="password" name="password">
             <label for="password2">Confirmer le mot de passe :</label>
             <input type="password" id="password2" name="password2">
-            <input id="submitBouton" type="submit">
             <div id="errorMessage"></div>
+            <input id="submitBouton" type="submit">
         </form>
         <a href="../login/login.php">Déjà inscrit ?</a>
     </div>
