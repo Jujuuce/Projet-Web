@@ -43,11 +43,12 @@
         <a href="../accueil.php"><img alt ="Retour à l'accueil" src="../croix.png"></a>
     </div>
     <div id="reglages">
-        <form style="display: inline" action="http://www.example.com/" method="get">
-          <button>Modifier de pseudo</button>
+        <form style="display: inline" action="changerlogin.php" method="get">
+          <button>Modifier le pseudo</button>
         </form>
-        <a href="changerlogin.php"><button>Modifier de pseudo</button></a>
-        <a href="changermdp.php"><button>Modifier le mot de passe</button></a>
+        <form style="display: inline" action="changermdp.php" method="get">
+          <button>Modifier le pseudo</button>
+        </form>
         <?php if(isset($_SESSION['login'])): ?>
             <form method="post" class="formButton">
                 <input type="submit" name="delete" value="Supprimer le compte">
