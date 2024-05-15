@@ -42,8 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $response['message'] = 'Mot de passe modifié';
         }
 
-        $requete = $bdd->prepare('UPDATE messages SET user = :a WHERE user = :b');
-        $requete->execute(array('a' => $login, 'b' => $_SESSION['login']));
         $_SESSION['login'] = $login;
         
     } catch (PDOException $e) {
