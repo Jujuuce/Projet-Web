@@ -23,7 +23,7 @@
         $requete->execute(array('a' => $_SESSION['login']));
 
         unset($_SESSION['login']);
-        header('Location: ../accueil.php');
+        header('Location: ../index.php');
     }
 ?>
 
@@ -40,7 +40,7 @@
 <body>
     <h1 class="formTitle">Paramètres</h1>
     <div class="quitter">
-        <a href="../accueil.php"><img alt ="Retour à l'accueil" src="../croix.png"></a>
+        <a href="../index.php"><img alt ="Retour à l'accueil" src="../croix.png"></a>
     </div>
     <div id="reglages">
         <form style="display: inline" action="changerlogin.php" method="get">
