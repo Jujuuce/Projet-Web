@@ -40,9 +40,12 @@
 <body>
     <h1 class="formTitle">Paramètres</h1>
     <div class="quitter">
-        <a href="../accueil.php"><img src="../croix.png" /></a>
+        <a href="../accueil.php"><img alt ="Retour à l'accueil" src="../croix.png"></a>
     </div>
     <div id="reglages">
+        <form style="display: inline" action="http://www.example.com/" method="get">
+          <button>Modifier de pseudo</button>
+        </form>
         <a href="changerlogin.php"><button>Modifier de pseudo</button></a>
         <a href="changermdp.php"><button>Modifier le mot de passe</button></a>
         <?php if(isset($_SESSION['login'])): ?>
