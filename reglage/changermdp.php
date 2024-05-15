@@ -34,6 +34,6 @@
             <input id="submitBouton" type="submit">
             <div id="errorMessage"></div>
         </form>
-    </>
+    </div>
 </body>
 </html>
