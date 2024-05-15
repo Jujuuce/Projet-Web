@@ -85,7 +85,7 @@ function affichageJoueurs() {
     })
     .then(content => {
         if (content["success"]) {
-            carte.innerHTML = "<img src=\"pokemon4.png\" alt=\"map\" class=\"map\"/><img src=\"calque.png\" alt=\"map\" id=\"calque\"/>";
+            carte.innerHTML = "<img src='images/map.png' alt='map' class='map'/><img src='images/calque.png' alt='map' id='calque'/>";
             for (let i = 0; i < content["users"].length; i++) {
                 if (start && content["users"][i][4] == 1) {
                     coordx = content["users"][i][1];
