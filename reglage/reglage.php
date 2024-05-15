@@ -39,7 +39,7 @@
 <body>
     <h1 class="formTitle">Paramètres</h1>
     <div class="quitter">
-        <a href="../index.php"><img alt ="Retour à l'accueil" src="../croix.png"></a>
+        <a href="../index.php"><img alt ="Retour à l'accueil" src="../images/croix.png"></a>
     </div>
     <div id="reglages">
         <form style="display: inline" action="changerlogin.php" method="get">
