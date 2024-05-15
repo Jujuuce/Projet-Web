@@ -35,6 +35,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paramètres</title>
     <link rel="stylesheet" href="../style.css">
+    <link rel="shortcut icon" type="image/png" href="../images/favicon.png"/>
 </head>
 <body>
     <h1 class="formTitle">Paramètres</h1>
